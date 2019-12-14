@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 03:52:56 by vserra            #+#    #+#             */
-/*   Updated: 2019/12/11 12:25:10 by vserra           ###   ########.fr       */
+/*   Updated: 2019/12/13 17:40:51 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		main(int ac, char **av)
 			precision = av[3];
 			printf("\nTEST width = * %s | precision = * %s\n", av[2], av[3]);
 			printf("-----\n");
-			printf("printf\n|%d| |%*.*d| |%0*.*d| |%-*.*d|\n", atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre));
+			printf("printf\n|%d| |%*.*d| |%0*.*d| |%-*.*d| |%-0*.*d|\n", atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre));
 			// ft_printf("ft_printf\n|%d| |%*.*d| |%0*.*d| |%-*.*d|\n", atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre));
 		}
 
@@ -61,7 +61,7 @@ int		main(int ac, char **av)
 			str = av[4];
 			printf("\nTEST width = * %s | precision = * %s | str = * %s\n", av[2], av[3], av[4]);
 			printf("-----\n");
-			printf("printf\n|%s| |%*.*s| |%-*.*s| |%0*.*s|\n", str, atoi(width), atoi(precision), str, atoi(width), atoi(precision), str, atoi(width), atoi(precision), str);
+			printf("printf\n|%s| |%*.*s| |%-*.*s| |%0*.*s| |%-0*.*s|\n", str, atoi(width), atoi(precision), str, atoi(width), atoi(precision), str, atoi(width), atoi(precision), str, atoi(width), atoi(precision), str);
 			// ft_printf("ft_printf\n|%s| |%*.*s| |%-*.*s| |%0*.*s|\n", str, atoi(width), atoi(precision), str, atoi(width), atoi(precision), str, atoi(width), atoi(precision), str);
 		}
 
@@ -75,6 +75,11 @@ int		main(int ac, char **av)
 		printf("-----\n");
 		printf("printf\n|%04d| |%-04d| |%0-4d| |%04.d| |%-04.d| |%0-4.d|\n", nb, nb, nb, nb, nb, nb);
 		// ft_printf("ft_printf\n|%04d| |%-04d| |%0-4d| |%04.d| |%-04.d| |%0-4.d|\n", nb, nb, nb, nb, nb, nb);
+
+		nb = 12345;
+		printf("\nTEST nb = 12345 | width = 20 | precision = 9\n");
+		printf("-----\n");
+		printf("printf\n|%d| |%020d| |%-020d| |%0-20d| |%020.9d| |%-020.9d| |%0-20.9d|\n", nb, nb, nb, nb, nb, nb, nb);
 
 		nb = 0;
 		printf("\nTEST nb = 0 | width = 4\n");
@@ -154,5 +159,6 @@ int		main(int ac, char **av)
 		// ft_printf("ft_printf\n|%s| |%20.*s| |%-20.*s| |%020.*s|\n", str, -12, str, -12, str, -12, str);
 		
 	}
+	printf("\n😎\n");
 	return (0);
 }
