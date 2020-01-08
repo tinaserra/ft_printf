@@ -6,14 +6,16 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 14:26:47 by vserra            #+#    #+#             */
-/*   Updated: 2019/12/14 03:16:08 by vserra           ###   ########.fr       */
+/*   Updated: 2020/01/08 17:47:02 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 // toutes les fonctions de tab doivent avoir le meme prototype
-extern int (*tab[255]) = 
+// extern dans ft_printf.h
+
+int (*g_tab[255])(void) =
 {
 	[0 ... '$']		=	ft_error,\
 	'%'				=	ft_hvbhfbv,\
