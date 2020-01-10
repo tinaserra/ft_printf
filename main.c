@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 03:52:56 by vserra            #+#    #+#             */
-/*   Updated: 2019/12/13 17:40:51 by vserra           ###   ########.fr       */
+/*   Updated: 2020/01/10 14:07:14 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		main(int ac, char **av)
 			printf("printf\n|%d| |%*.*d| |%0*.*d| |%-*.*d| |%-0*.*d|\n", atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre));
 			// ft_printf("ft_printf\n|%d| |%*.*d| |%0*.*d| |%-*.*d|\n", atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre));
 		}
-
+ 
 		if (ac > 4)
 		{
 			printf("\n\n******************************************* string --> %% s *******************************************\n\n");

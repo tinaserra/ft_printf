@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 20:10:25 by vserra            #+#    #+#             */
-/*   Updated: 2020/01/08 18:10:08 by vserra           ###   ########.fr       */
+/*   Updated: 2020/01/10 15:12:42 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,50 @@ void	get_arg(const char *str, va_list ap, t_info *info)
 	while(str[i])
 	{
 
-		while (str[i] != '%')
+		while (str[i] != '%') // compter le nombre de carateres affichés
+		{
+			write(1, str, i);
 			i++;
-		write(1, str, i);
+		}
 
 			while(str[i] != 'c' || str[i] != 's' || str[i] != 'p' || str[i] != 'd'
 					|| str[i] != 'i' || str[i] != 'u' || str[i] != 'x'
 					|| str[i] != 'X' || str[i] != '%')
 			{
-				if (str[i] == '-') // | str[i + 1] == '-'
+				if (str[i] == '-') // || str[i + 1] == '-'
 					info->mask = (info->mask | IS_MINUS);
 				if (str[i] == '0' && !info->width_value) // /!\ peut etre avant ou apres le zero
 					info->mask = (info->mask | IS_ZERO);
+
+
+				// /!\ a bien differencier le flag 0 d'un 0 dans un nombre !
+
+
 				if (str[i] >= '0' && str[i] <= '9') // is_num
 				{
 					info->mask = (info->mask | IS_WIDTH);
+					//prendre la valeur et le stocker dans info->width_value : atoi
+					// while (str[i] >= '0' && str[i] < '9') // boucler ? 
+					// modifier mon atoi ? envoyer l'index a atoi en param ? 
+					// calculer longueur nb ?
+					// {
+						info->width_value = atoi(str);
+					// }
 				}
 				if (str[i] == '*')
-					//prendre la valeur et le stocker dans width_value : itoa
+					//prendre la valeur et le stocker dans info->width_value : atoi
 						char *temp;
 						temp = va_arg(ap, char *);
+						info->width_value = atoi(temp);
 				if (str[i] == '.')
+				{
 					info->mask = (info->mask | IS_PRECISION);
+					if (str[i + 1] == '*')
+					{
+						temp = va_arg(ap, char *);
+						// ft_atoi && stocker le resultat dans info->prec_value
+					}
+				}
 			}
 		i++;
 	}
