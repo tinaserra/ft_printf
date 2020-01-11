@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 14:26:47 by vserra            #+#    #+#             */
-/*   Updated: 2020/01/08 18:39:36 by vserra           ###   ########.fr       */
+/*   Updated: 2020/01/10 20:19:25 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,38 @@
 // toutes les fonctions de tab doivent avoir le meme prototype
 // extern dans ft_printf.h
 
-int (*g_tab[255])(void) =
-{
-	[0 ... '$']		=	ft_error,\
-	'%'				=	ft_hvbhfbv,\
-	['&' ... 'W']	=	ft_error,\
-	'X'				=	ft_hvbhfbv,\
-	['Y' ... 'b']	=	ft_error,\
-	'c'				=	ft_hvbhfbv,\
-	'd'				=	ft_njnjn,\
-	['e' ... 'h']	=	ft_error,\
-	'i'				=	ft_hvbhfbv,\
-	['j' ... 'o']	=	ft_error,\
-	'p'				=	ft_hvbhfbv,\
-	['q' ... 'r']	=	ft_error,\
-	's'				=	ft_hvbhfbv,\
-	't'				=	ft_error,\
-	'u'				=	ft_hvbhfbv,\
-	['v' ... 'w']	=	ft_error,\
-	'x'				=	ft_hvbhfbv,\
-	['y' ... 127]	=	ft_error
-};
+// int (*g_tab[255])(void) =
+// {
+// 	[0 ... '$']		=	ft_error,\
+// 	'%'				=	ft_hvbhfbv,\
+// 	['&' ... 'W']	=	ft_error,\
+// 	'X'				=	ft_hvbhfbv,\
+// 	['Y' ... 'b']	=	ft_error,\
+// 	'c'				=	ft_hvbhfbv,\
+// 	'd'				=	ft_njnjn,\
+// 	['e' ... 'h']	=	ft_error,\
+// 	'i'				=	ft_hvbhfbv,\
+// 	['j' ... 'o']	=	ft_error,\
+// 	'p'				=	ft_hvbhfbv,\
+// 	['q' ... 'r']	=	ft_error,\
+// 	's'				=	ft_hvbhfbv,\
+// 	't'				=	ft_error,\
+// 	'u'				=	ft_hvbhfbv,\
+// 	['v' ... 'w']	=	ft_error,\
+// 	'x'				=	ft_hvbhfbv,\
+// 	['y' ... 127]	=	ft_error
+// };
 
 int		ft_printf(const char *str, ...)
 {
 	va_list ap;
-	int nb;
+	// int nb;
 
 	va_start(ap, str);
-	nb = 0;
-	nb = parsing(str, ap);
+	// nb = 0;
+	/*nb = */parsing(str, ap);
 	va_end(ap);
-	return (nb);
+	// return (nb);
 }
 
 // MAKEFILE

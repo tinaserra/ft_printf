@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 17:46:44 by vserra            #+#    #+#             */
-/*   Updated: 2020/01/08 17:47:06 by vserra           ###   ########.fr       */
+/*   Updated: 2020/01/10 20:20:19 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,13 @@ typedef struct	s_info {
 }				t_info;
 
 int				ft_printf(const char *str, ...);
+void			parsing(const char *str, va_list ap);
+void			get_arg(const char *str, va_list ap, t_info *info);
+int				ft_n_atoi(const char *str, int i);
+inline int		ft_is_minus(char *str, int i, t_info *info);
+inline int		ft_is_zero(char *str, int i, t_info *info);
+inline int		ft_get_width(char *str, int i, t_info *info);
+inline int		ft_get_star_value(char *str, int i, va_list ap, t_info *info);
+inline int		ft_is_precision(char *str, int i, va_list ap, t_info *info);
 
 #endif
