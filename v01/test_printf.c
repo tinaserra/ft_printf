@@ -1,0 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_printf.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/25 21:50:27 by vserra            #+#    #+#             */
+/*   Updated: 2020/01/25 21:50:49 by vserra           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdio.h>
+
+int		main()
+{
+	int		nb;
+	char	*str;
+	char	c;
+
+	nb = 1;
+	str = "Coucou maman !";
+	c = 'a';
+
+	printf("Printf	-> |%c| |%2147483647d| |%s|\n", c, nb, str);
+	// printf("Printf	-> |%10d| |%10s| |%10c|\n", nb, str, c);
+	// printf("Printf	-> |%-10d| |%-10s| |%-10c|\n", nb, str, c);
+	// printf("Printf	-> |%020d| |%020s| |%020c|\n", nb, str, c);
+	// printf("Printf	-> |%0-20.3d| |%0-20.3s| |%0-20.3c|\n", nb, str, c);
+	// printf("Printf	-> |%.3d| |%.3s| |%.3c|\n", nb, str, c);
+	// printf("\nWTFF\n");
+	// printf("Printf	-> |%020-0d| |%020-0s| |%020-0c|\n", nb, str, c);
+	// printf("Printf nW	-> |%-----d| |%-----s| |%-----c|\n", nb, str, c);
+	// printf("Printf 0-	-> |%20d| |%20s| |%20c|\n", nb, str, c);
+	// printf("Printf 1-	-> |%-20d| |%-20s| |%-20c|\n", nb, str, c);
+	// printf("Printf 4-	-> |%----20d| |%----20s| |%----20c|\n", nb, str, c);
+	// printf("Printf 0-	-> |%-015d| |%-015s| |%-015c|\n", nb, str, c);
+	// printf("Printf 5-	-> |%-----20d| |%-----20s| |%-----20c|\n", nb, str, c);
+	// printf("Printf	-> |%%d| |%s%| |%%c| |%%|\n", nb, str, c);
+	return (0);
+}
