@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 21:50:27 by vserra            #+#    #+#             */
-/*   Updated: 2020/01/25 21:50:49 by vserra           ###   ########.fr       */
+/*   Updated: 2020/01/26 20:00:02 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 int		main()
 {
-	int		nb;
-	char	*str;
-	char	c;
+	int				nb;
+	unsigned int	unb;
+	int				hexa;
+	char			*str;
+	char			c;
 
-	nb = 1;
+	nb = 1456;
+	unb = 46531;
+	hexa = 255;
 	str = "Coucou maman !";
 	c = 'a';
 
-	printf("Printf	-> |%c| |%2147483647d| |%s|\n", c, nb, str);
+	printf("Printf	-> |%.0c| |%.0s| |%.0p| |%.0d| |%.0i| |%.0u| |%.0x| |%.0X| |%.0%|\n", c, str, str, nb, nb, unb, hexa, hexa);
 	// printf("Printf	-> |%10d| |%10s| |%10c|\n", nb, str, c);
 	// printf("Printf	-> |%-10d| |%-10s| |%-10c|\n", nb, str, c);
 	// printf("Printf	-> |%020d| |%020s| |%020c|\n", nb, str, c);

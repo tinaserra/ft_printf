@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 19:01:06 by vserra            #+#    #+#             */
-/*   Updated: 2020/01/25 21:59:56 by vserra           ###   ########.fr       */
+/*   Updated: 2020/01/26 16:39:46 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ void	get_format(char **format, va_list ap, t_info *info)
 	if (**format >= '0' && **format <= '9')
 		is_width(format, info); //Ne rien afficher en cas de width > int max
 	if (**format == '*')
-		get_width();
+		get_width(format, info);
 	if (**format == '.') // si oui -> check si un nombre ou une etoile apres .
-		is_precision();
-	if (**format == 'd') // type
-		get_type();
+		is_precision(format, info);
+	if (**format == 'c' || **format == 's' || **format == 'p'
+		|| **format == 'd' || **format == 'i' || **format == 'u'
+		|| **format == 'x' || **format == 'X' || **format == '%') // type cspdiuxX%
+		get_type(format, info);
 }
 
 void	parsing(char **format, va_list ap)
