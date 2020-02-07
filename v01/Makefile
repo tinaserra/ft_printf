@@ -6,7 +6,7 @@
 #    By: vserra <vserra@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/25 22:05:00 by vserra            #+#    #+#              #
-#    Updated: 2020/02/07 01:50:03 by vserra           ###   ########.fr        #
+#    Updated: 2020/02/07 02:21:35 by vserra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,12 @@ SRC		=	ft_printf.c\
 			parsing.c\
 			parsing_utils.c
 
-OBJ		=		$(SRC:.c=.o) #regle implicite -> peut etre un mauvais vocabulaire
-# OBJS	=		$(addprefix $(PRE_OBJ), $(OBJ))
+OBJ		=		$(SRC:%.c=$(PRE_OBJ)%.o) #regle implicite -> peut etre un mauvais vocabulaire
+OBJS	=		$(addprefix $(PRE_OBJ), $(OBJ))
 
-# SRCS	=		$(addprefix $(PRE_SRC), $(SRC))
+SRCS	=		$(addprefix $(PRE_SRC), $(SRC))
 
-DEP		=		$(SRC:.c=.d)
+DEP		=		$(SRC:%.c=$(PRE_OBJ)%.d)
 
 
 PRE_SRC	=	./srcs/
@@ -39,16 +39,17 @@ CFLAGS	=	-Wall -Wextra -Werror # -MMD # -> voir pour creer des .d
 
 all : $(NAME) # nom de l'executable
 
--include $(DEP)
 $(PRE_OBJ)%.o: $(PRE_SRC)%.c
 	@mkdir -p $(PRE_OBJ)
 	$(CC) $(CFLAGS) -I $(HEAD) -c $< -o $@
 # -p créer les dossiers s'ils n'existent pas
 
-%.d: %.c
+-include $(DEP)
+$(PRE_OBJ)%.d: $(PRE_SRC)%.c
+	@mkdir -p $(PRE_OBJ)
 	$(CC) -MMD -I $(HEAD) $< -o $@
 
-$(NAME) : $(DEP) $(OBJ)
+$(NAME) : $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 	$(LIB) $(NAME)
 
