@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 17:46:44 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/05 14:27:56 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/10 19:55:38 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,39 @@
 # define IS_POINT		16
 // # define IS_STAR		32
 
+typedef enum	e_mode{
+	FLAGS = 0,
+	WIDTH,
+	PRECISION,
+	TYPE,
+	ERROR
+}				t_mode;
 
 //extern int (*g_tab[255])(void); //tableau pointeur sur fonction
 
 typedef struct	s_info {
-	char	mask;
-	int		width_value;
-	int		prec_value;
+	char			mask;
+	int				width_value;
+	int				prec_value;
 }				t_info;
 
-int		ft_printf(const char *format, ...);
-void	parsing(const char *format, va_list ap);
-void	get_format(char *format, va_list ap, t_info *info);
+typedef struct	s_data {
+	unsigned char	*format;
+	va_list			ap;
+	t_info			info;
+	t_mode			mode;
+}				t_data;
+
+int		ft_printf(const char *str, ...);
+void	parsing(t_data *data);
+int		get_format(t_data *data);
+
+// tableau de tableau de pointeur de fonction
+void	is_flag(t_data *data);
+void	is_width(t_data *data);
+void	get_width(t_data *data);
+void	is_precision(t_data *data);
+int		ft_segfault();
+
 
 #endif

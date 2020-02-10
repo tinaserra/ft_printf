@@ -6,7 +6,7 @@
 #    By: vserra <vserra@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/25 22:05:00 by vserra            #+#    #+#              #
-#    Updated: 2020/02/07 02:21:35 by vserra           ###   ########.fr        #
+#    Updated: 2020/02/10 19:50:26 by vserra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,15 @@ SRC		=	ft_printf.c\
 			parsing_utils.c
 
 OBJ		=		$(SRC:%.c=$(PRE_OBJ)%.o) #regle implicite -> peut etre un mauvais vocabulaire
+
+DEP		=		$(SRC:%.c=$(PRE_OBJ)%.d)
+
 OBJS	=		$(addprefix $(PRE_OBJ), $(OBJ))
 
 SRCS	=		$(addprefix $(PRE_SRC), $(SRC))
 
-DEP		=		$(SRC:%.c=$(PRE_OBJ)%.d)
-
-
 PRE_SRC	=	./srcs/
+
 PRE_OBJ	=	./objs/
 
 HEAD	=	./includes/
@@ -35,7 +36,7 @@ LIB		=	ranlib
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror # -MMD # -> voir pour creer des .d
+CFLAGS	=	-Wall -Wextra # -Werror # -MMD # -> creer des .d
 
 all : $(NAME) # nom de l'executable
 

@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 18:42:50 by vserra            #+#    #+#             */
-/*   Updated: 2020/01/25 18:18:09 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/10 17:58:23 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // extern dans ft_printf.h
 // extern -> pour rendre la globale accessible dans tous les fichiers
 
-// int (*g_tab[255])(void) =
+// int (*g_tab[256])(void) =
 // {
 // 	[0 ... '$']		=	ft_error,\
 // 	'%'				=	ft_hvbhfbv,\
@@ -40,16 +40,15 @@
 
 int		ft_printf(const char *str, ...)
 {
-	char *format;
+	t_data data;
 
-	format = str;
+	data.format = (unsigned char *)str;
 
-	va_list ap;
 	// int nb; // nombre de char ecrit par printf
 
-	va_start(ap, str);
+	va_start(data.ap, str);
 	// nb = 0;
-	/*nb = */parsing (&format, ap);
-	va_end(ap);
+	/*nb = */parsing(&data);
+	va_end(data.ap);
 	// return (nb);
 }
