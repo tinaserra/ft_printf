@@ -6,14 +6,12 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:37:31 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/10 19:51:55 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/12 15:06:59 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
-
-
 
 int (*g_parse[ERROR][256])() =
 {
@@ -33,17 +31,16 @@ int (*g_parse[ERROR][256])() =
 	},
 	[TYPE] = {
 		[0 ... 255] = ft_segfault,
-		// ['X'] = type_X,
-		// ['c'] = type_c,
-		// ['d'] = type_d,
-		// ['i'] = type_i,
-		// ['p'] = type_p,
-		// ['s'] = type_s,
-		// ['u'] = type_u,
-		// ['x'] = type_x
+		['X'] = type_X,
+		['c'] = type_c,
+		['d'] = type_d,
+		['i'] = type_i,
+		['p'] = type_p,
+		['s'] = type_s,
+		['u'] = type_u,
+		['x'] = type_x,
+		['%'] = type_pourcent
 	}
 };
-
-
 
 #endif

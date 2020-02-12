@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 20:48:36 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/10 18:28:10 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/12 15:24:24 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void	is_flag(t_data *data)
 			data->format++;
 		}
 	}
-	// return (i);
+	// Si presence de '-' et '0' -> '0' ignoré
+	if (data->info.mask == IS_MINUS | IS_ZERO) // 3
+		data->info.mask ^= IS_ZERO; // XOR ou exclusif 1 ^ 1 = 0 
 }
 
 int		ft_atoi_cancer(char **str) //get width

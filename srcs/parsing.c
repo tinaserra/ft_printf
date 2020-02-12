@@ -6,13 +6,12 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 19:01:06 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/10 19:54:29 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/12 17:58:38 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-# include "parsing.h"
-
+#include "parsing.h"
 
 // toutes les fonctions de tab doivent avoir le meme prototype
 
@@ -27,13 +26,13 @@
 	// info->width_value = 0;
 	// info->prec_value = 0;
 
-void reset_info(t_info *info) //memset ou bzero
+void reset_info(t_data *data) //memset ou bzero
 {
-	if (info != NULL)
+	if (data->info != NULL)
 	{
-		info->mask = 0;
-		info->width_value = 0;
-		info->prec_value = 0;
+		data->info.mask = 0;
+		data->info.width_value = 0;
+		data->info.prec_value = 0;
 	}
 	// return (info);
 }
@@ -76,19 +75,18 @@ int		get_format(t_data *data)
 void	parsing(t_data *data)
 {
 	int i;
-	// t_info info;
 
 	i = 0;
 	// Parcourir et afficher str jusqu'a %
 	while (data->format[i])
 	{
-		while (data->format[i] != '%' && data->format[i]) // /!\ si on est sur un '\0'
+		while(data->format[i] != '%' && data->format[i]) // /!\ si on est sur un '\0'
 			i++;
 		write(1, data->format, i);
 		i++;
 		data->format += i;
 		// Decouper et recuperer les infos du format
-		if(data->format[i]) //useless ?
+		if(data->format[i] == '%' && data->format[i]) //useless ?
 			get_format(data); // verif si on est sur un '%'
 		// i++;
 	}

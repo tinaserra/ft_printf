@@ -6,7 +6,7 @@
 #    By: vserra <vserra@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/25 22:05:00 by vserra            #+#    #+#              #
-#    Updated: 2020/02/10 19:50:26 by vserra           ###   ########.fr        #
+#    Updated: 2020/02/12 13:26:52 by vserra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,18 +36,20 @@ LIB		=	ranlib
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra # -Werror # -MMD # -> creer des .d
+CFLAGS	=	-Wall -Wextra # -Werror # -MMD -> creer des .d
 
-all : $(NAME) # nom de l'executable
+all: $(NAME) # nom de l'executable
 
 $(PRE_OBJ)%.o: $(PRE_SRC)%.c
-	@mkdir -p $(PRE_OBJ)
+	#echo OBJ $< | $@
+	mkdir -p $(PRE_OBJ)
 	$(CC) $(CFLAGS) -I $(HEAD) -c $< -o $@
 # -p créer les dossiers s'ils n'existent pas
 
 -include $(DEP)
 $(PRE_OBJ)%.d: $(PRE_SRC)%.c
-	@mkdir -p $(PRE_OBJ)
+	# echo DEP $< | $@
+	mkdir -p $(PRE_OBJ)
 	$(CC) -MMD -I $(HEAD) $< -o $@
 
 $(NAME) : $(OBJ)

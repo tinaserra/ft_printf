@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 18:42:50 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/10 17:58:23 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/12 17:59:06 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,5 @@ int		ft_printf(const char *str, ...)
 	/*nb = */parsing(&data);
 	va_end(data.ap);
 	// return (nb);
+	return (0);
 }
