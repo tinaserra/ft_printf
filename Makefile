@@ -6,13 +6,14 @@
 #    By: vserra <vserra@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/25 22:05:00 by vserra            #+#    #+#              #
-#    Updated: 2020/02/12 13:26:52 by vserra           ###   ########.fr        #
+#    Updated: 2020/02/12 18:48:37 by vserra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC		=	ft_printf.c\
 			parsing.c\
-			parsing_utils.c
+			parsing_utils.c\
+			type_c.c
 
 OBJ		=		$(SRC:%.c=$(PRE_OBJ)%.o) #regle implicite -> peut etre un mauvais vocabulaire
 

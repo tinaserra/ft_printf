@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 19:01:06 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/12 17:58:38 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/14 15:21:47 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,6 @@
 	// info->mask = 0;
 	// info->width_value = 0;
 	// info->prec_value = 0;
-
-void reset_info(t_data *data) //memset ou bzero
-{
-	if (data->info != NULL)
-	{
-		data->info.mask = 0;
-		data->info.width_value = 0;
-		data->info.prec_value = 0;
-	}
-	// return (info);
-}
 
 // void	get_format(t_data *data)
 // {
@@ -58,17 +47,35 @@ int		ft_segfault()
 	return(-1);
 }
 
+void reset_info(t_data *data) //memset ou bzero
+{
+	// printf("\nreset info\n");
+	data->info.mask = 0;
+	data->info.width_value = 0;
+	data->info.prec_value = 0;
+}
+
 int		get_format(t_data *data)
 {
+	reset_info(data);
+	printf("\n\nBefore FLAGS |%s|\n", data->format);
 	data->mode = FLAGS;
 	g_parse[data->mode][*data->format](data);
+	printf("Before WIDTH 2 |%s|\n", data->format);
 	data->mode = WIDTH;
 	g_parse[data->mode][*data->format](data);
+	printf("Before PRECISION 3 |%s|\n", data->format);
 	data->mode = PRECISION;
 	g_parse[data->mode][*data->format](data);
+	printf("Before TYPE 4 |%s|\n", data->format);
 	data->mode = TYPE;
 	if(g_parse[data->mode][*data->format](data)) // != 0
+	{
+		printf("ERROR |%s|\n", data->format);
 		return(-1); // UB -> se casser de print f
+	}
+	// return 0;
+	printf("get format 5 |%s|\n", data->format);
 	return (0);
 }
 
@@ -83,11 +90,15 @@ void	parsing(t_data *data)
 		while(data->format[i] != '%' && data->format[i]) // /!\ si on est sur un '\0'
 			i++;
 		write(1, data->format, i);
-		i++;
 		data->format += i;
 		// Decouper et recuperer les infos du format
-		if(data->format[i] == '%' && data->format[i]) //useless ?
+		// printf("Parsing |%s|\n", data->format);
+		if(*data->format == '%') //useless ?
+		{
+			data->format++;
 			get_format(data); // verif si on est sur un '%'
+		}
+		return ;
 		// i++;
 	}
 	/* TEST */

@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:37:31 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/12 15:06:59 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/12 18:37:24 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,22 @@ int (*g_parse[ERROR][256])() =
 		[0 ... 255] = ft_segfault,
 		['.'] = is_precision
 	},
+	// [TYPE] = {
+		// [0 ... 255] = ft_segfault,
+		// ['X'] = type_X,
+		// ['c'] = type_c,
+		// ['d'] = type_d,
+		// ['i'] = type_i,
+		// ['p'] = type_p,
+		// ['s'] = type_s,
+		// ['u'] = type_u,
+		// ['x'] = type_x,
+		// ['%'] = type_pourcent
+	// }
 	[TYPE] = {
 		[0 ... 255] = ft_segfault,
-		['X'] = type_X,
-		['c'] = type_c,
-		['d'] = type_d,
-		['i'] = type_i,
-		['p'] = type_p,
-		['s'] = type_s,
-		['u'] = type_u,
-		['x'] = type_x,
-		['%'] = type_pourcent
-	}
+		['c'] = type_c
+	},
 };
 
 #endif

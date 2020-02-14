@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 17:46:44 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/10 19:55:38 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/14 10:58:19 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	is_flag(t_data *data);
 void	is_width(t_data *data);
 void	get_width(t_data *data);
 void	is_precision(t_data *data);
+int		type_c(t_data *data);
 int		ft_segfault();
 
 

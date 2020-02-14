@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 20:48:36 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/12 15:24:24 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/14 15:20:48 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,24 @@
 
 void	is_flag(t_data *data)
 {
+	// printf("is_flag\n");
 	while (*data->format == '-' || *data->format == '0')
 	{
 		if (*data->format == '-')
 		{
 			data->info.mask |= IS_MINUS;
+			printf("mask minus -> %d\n", data->info.mask);
 			data->format++;
 		}
 		if (*data->format == '0')
 		{
 			data->info.mask |= IS_ZERO;
+			// printf("mask zero -> %d\n", data->info.mask);
 			data->format++;
 		}
 	}
 	// Si presence de '-' et '0' -> '0' ignoré
-	if (data->info.mask == IS_MINUS | IS_ZERO) // 3
+	if (data->info.mask == (IS_MINUS | IS_ZERO)) // 3 IS_MINUS | IS_ZERO
 		data->info.mask ^= IS_ZERO; // XOR ou exclusif 1 ^ 1 = 0 
 }
 
@@ -59,10 +62,7 @@ int		ft_atoi_cancer(char **str) //get width
 void	is_width(t_data *data)
 {
 	if ((data->info.width_value = ft_atoi_cancer(&data->format)) > -1)
-	{
 		data->info.mask |= IS_WIDTH;
-		data->format++; // (1) a voir si ici ou dans le if
-	}
 	else // erreur : la width > INT_MAX
 		data->info.width_value = 0;
 }
