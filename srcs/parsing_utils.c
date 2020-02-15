@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 20:48:36 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/14 15:20:48 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/15 17:39:43 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	is_flag(t_data *data)
 {
-	// printf("is_flag\n");
+	printf("\n********* IS_FLAGS *********\n");
 	while (*data->format == '-' || *data->format == '0')
 	{
 		if (*data->format == '-')
@@ -29,13 +29,14 @@ void	is_flag(t_data *data)
 		if (*data->format == '0')
 		{
 			data->info.mask |= IS_ZERO;
-			// printf("mask zero -> %d\n", data->info.mask);
+			printf("mask zero -> %d\n", data->info.mask);
 			data->format++;
 		}
 	}
 	// Si presence de '-' et '0' -> '0' ignoré
 	if (data->info.mask == (IS_MINUS | IS_ZERO)) // 3 IS_MINUS | IS_ZERO
 		data->info.mask ^= IS_ZERO; // XOR ou exclusif 1 ^ 1 = 0 
+	printf("mask after is_flags -> %d\n", data->info.mask);
 }
 
 int		ft_atoi_cancer(char **str) //get width
@@ -61,32 +62,39 @@ int		ft_atoi_cancer(char **str) //get width
 
 void	is_width(t_data *data)
 {
+	printf("\n********* IS_WIDTH *********\n");
 	if ((data->info.width_value = ft_atoi_cancer(&data->format)) > -1)
 		data->info.mask |= IS_WIDTH;
 	else // erreur : la width > INT_MAX
 		data->info.width_value = 0;
+	printf("width_value -> %d\n", data->info.width_value);
+	printf("mask -> %d\n", data->info.mask);
 }
 
 void	get_width(t_data *data) // possibilite de faire une ft get_arg
 {
+	printf("\n********* GET_WIDTH *********\n");
 	data->info.width_value = va_arg(data->ap, int);
 	data->info.mask |= IS_WIDTH;
+	printf("width_value -> %d\n", data->info.width_value);
+	printf("mask -> %d\n", data->info.mask);
 	data->format++; //(1) a voir si ici ou dans le if
 }
-
-// void	get_width(char **format, t_info *info)
 
 // (1) ->	veut-on continuer a get_format si une width ou autre n'est pas correcte?
 //			est-ce qu'on continue printf, gere-ton les autres formats ?
 
 void	is_precision(t_data *data)
 {
+		printf("\n********* IS_PRECISION *********\n");
 		data->format++;
 		if(*data->format == '*')
 		{
 			// get_arg -> mettre la valeur dans data->info.prec_value
-			data->info.width_value = va_arg(data->ap, int);
+			data->info.prec_value = va_arg(data->ap, int);
 			data->info.mask |= IS_PRECISION;
+			printf("*prec_value -> %d\n", data->info.prec_value);
+			printf("mask -> %d\n", data->info.mask);
 			data->format++; // (1) a voir si ici ou dans le if
 		}
 		else if (*data->format >= '0' && *data->format <= '9')
@@ -95,8 +103,10 @@ void	is_precision(t_data *data)
 			if ((data->info.prec_value = ft_atoi_cancer(&data->format)) > -1)
 				data->info.mask |= IS_PRECISION;
 			else // erreur : la width > INT_MAX
-				data->info.width_value = 0;
-			data->format++; // (1) a voir si ici ou dans le if
+				data->info.prec_value = 0;
+			printf("prec_value -> %d\n", data->info.prec_value);
+			printf("mask -> %d\n", data->info.mask);
+			// data->format++; // (1) a voir si ici ou dans le if
 		}
 		else
 			data->info.mask |= IS_POINT;
