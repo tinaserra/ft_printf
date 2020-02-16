@@ -25,6 +25,8 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <unistd.h>
+# include <stdio.h>
 
 # define IS_MINUS		1
 # define IS_ZERO		2
@@ -59,7 +61,8 @@ typedef struct	s_data {
 int		ft_printf(const char *str, ...);
 void	parsing(t_data *data);
 int		get_format(t_data *data);
-// void	print_debug(char *str, t_data *data);
+void	print_debug(char *str, t_data *data, int ctrl);
+void	 check_debug(t_data *data);
 
 // tableau de tableau de pointeur de fonction
 void	is_flag(t_data *data);

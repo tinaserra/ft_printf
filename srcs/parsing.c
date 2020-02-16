@@ -33,15 +33,25 @@ void reset_info(t_data *data) //memset ou bzero
 }
 
 #ifdef DEBUG
-// #define print_debug
-void	print_debug(char *str, t_data *data)
+void	print_debug(char *str, t_data *data, int ctrl)
 {
-	// printf("PUUUUUUTE\n");
-	printf("%s	|%s|\n", str, data->format);
+	if (ctrl == 'S')
+		printf("%s\n", str);
+	if (ctrl == 'F')
+		printf("%s |%s|\n", str, data->format);
+	if (ctrl == 'W')
+		printf("%s %d\n", str, data->info.width_value);
+	if (ctrl == 'P')
+		printf("%s %d\n", str, data->info.prec_value);
+	if (ctrl == 'M')
+		printf("%s %d\n", str, data->info.mask);
 }
 #else
-void	print_debug(char *str, t_data *data)
+void	print_debug(char *str, t_data *data, int ctrl)
 {
+	(void)str;
+	(void)data;
+	(void)ctrl;
 	return ;
 }
 #endif
@@ -49,29 +59,29 @@ void	print_debug(char *str, t_data *data)
 
 int		get_format(t_data *data)
 {
-	printf("\n********* GET_FORMAT *********\n");
-	print_debug("Format BEFORE", data);
+	print_debug("\n********* GET_FORMAT *********\n", data, 'S');
+	print_debug("Format BEFORE", data, 'F');
 	// printf("Format BEFOOOOORE	|%s|\n", data->format);
 	reset_info(data);
 	data->mode = FLAGS;
 	g_parse[data->mode][*data->format](data);
-	print_debug("AFTER FLAGS", data);
+	print_debug("AFTER FLAGS", data, 'F');
 	// printf("AFTER FLAGS	|%s|\n", data->format);
 	data->mode = WIDTH;
 	g_parse[data->mode][*data->format](data);
-	print_debug("AFTER WIDTH", data);
+	print_debug("AFTER WIDTH", data, 'F');
 	// printf("AFTER WIDTH	|%s|\n", data->format);
 	data->mode = PRECISION;
 	g_parse[data->mode][*data->format](data);
-	print_debug("AFTER PRECISION", data);
+	print_debug("AFTER PRECISION", data, 'F');
 	// printf("AFTER PRECISION	|%s|\n", data->format);
 	data->mode = TYPE;
 	if(g_parse[data->mode][*data->format](data)) // != 0
 	{
-		printf("ERROR |%s|\n", data->format);
+		print_debug("ERROR", data, 'F');
 		return(-1); // UB -> se casser de print f
 	}
-	print_debug("AFTER TYPE", data);
+	print_debug("\nAFTER TYPE", data, 'F');
 	// printf("AFTER TYPE	|%s|\n", data->format);
 	return (0);
 }
@@ -89,7 +99,6 @@ void	parsing(t_data *data)
 		write(1, data->format, i);
 		data->format += i;
 		// Decouper et recuperer les infos du format
-		// printf("Parsing |%s|\n", data->format);
 		if(*data->format == '%') //useless ?
 		{
 			data->format++;

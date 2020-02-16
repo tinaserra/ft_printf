@@ -12,6 +12,31 @@
 
 #include "ft_printf.h"
 
+#ifdef DEBUG
+void	 check_debug(t_data *data)
+{
+	if(data->info.mask & IS_ZERO)
+		printf("Flag ZERO -> Undefine Behaviour\n");
+	if(data->info.mask & IS_MINUS)
+		printf("Flag MINUS\n");
+	if(data->info.mask & IS_WIDTH)
+		printf("Présence width\n");
+	if(data->info.mask & IS_POINT)
+		printf(".point -> Nothing to do\n");
+	if(data->info.mask & IS_PRECISION)
+		printf(".Precision -> Undefine Behaviour\n");
+}
+#else
+void	 check_debug(t_data *data)
+{
+	(void)data;
+	return ;
+}
+#endif
+
+//'0' -> Undefined behaviour
+// '.12' -> Undefined behaviour
+// '.' -> Nothing to do
 int		type_c(t_data *data)
 {
 	char c;
@@ -19,27 +44,14 @@ int		type_c(t_data *data)
 	// char buff[data->info.width_value - 1];
 	c = va_arg(data->ap, char);
 
-	printf("\n********* TYPE_C *********\n");
-
-	printf("\nmask -> %d\n", data->info.mask);
-	//'0' -> Undefined behaviour
-	if(data->info.mask & IS_ZERO)
-		printf("Flag 0 -> Undefine Behaviour\n");
-	if(data->info.mask & IS_MINUS)
-		printf("Flag minus\n");
-	// '.12' -> Undefined behaviour
-	if(data->info.mask & IS_PRECISION) // if(data->info.mask == data->info.mask | IS_PRECISION)
-		printf(".Precision -> Undefine Behaviour\n");
-	// '.' -> Nothing to do
-	if(data->info.mask & IS_POINT) // if(data->info.mask == data->info.mask | IS_POINT)
-		printf(".point -> RAS\n");
+	print_debug("\n********* TYPE_C *********\n", data, 'S');
+	check_debug(data);
+	print_debug("\nmask ->", data, 'M');
 	if(data->info.mask & IS_WIDTH) // if(data->info.mask == data->info.mask | IS_WIDTH)
 	{
-		// printf("width -> %d\n", data->info.width_value);
 		if(data->info.mask & IS_MINUS) // if(data->info.mask == data->info.mask | IS_MINUS)
 		{
 			// '-' -> alligner resultat a gauche
-			// printf("Flag minus -> alligner a gauche le res\n");
 			write(1, &c, 1);
 			while (data->info.width_value - 1)
 			{
@@ -57,9 +69,9 @@ int		type_c(t_data *data)
 			}
 			write(1, &c, 1);
 		}
-		// printf("width_value : %d\n", data->info.width_value);
 	}
 	else
 		write(1, &c, 1);
+	// incrementer format
 	return (0);
 }

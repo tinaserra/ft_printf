@@ -34,7 +34,7 @@ LIB		=	ranlib
 CC		=	gcc
 
 override CFLAGS	+=	-Wall -Wextra -MMD # -Werror # -MMD -> creer des .d
-# override -> permet de reecrirela suite de la variable
+# override -> permet de reecrire la suite de la variable
 
 opti:
 	make -j all
@@ -50,7 +50,7 @@ $(PRE_OBJ)%.o: $(PRE_SRC)%.c
 $(NAME) : $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 	$(LIB) $(NAME)
-	@echo chouette ca compile
+	@echo Merci Allah ca compile !
 
 debug : fclean
 	make opti CFLAGS:=-DDEBUG

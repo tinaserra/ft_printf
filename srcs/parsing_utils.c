@@ -17,26 +17,29 @@
 
 void	is_flag(t_data *data)
 {
-	printf("\n********* IS_FLAGS *********\n");
+	print_debug("\n********* IS_FLAGS *********\n", data, 'S');
 	while (*data->format == '-' || *data->format == '0')
 	{
 		if (*data->format == '-')
 		{
 			data->info.mask |= IS_MINUS;
-			printf("mask minus -> %d\n", data->info.mask);
+			print_debug("mask minus ->", data, 'M');
+			// printf("mask minus -> %d\n", data->info.mask);
 			data->format++;
 		}
 		if (*data->format == '0')
 		{
 			data->info.mask |= IS_ZERO;
-			printf("mask zero -> %d\n", data->info.mask);
+			print_debug("mask zero ->", data, 'M');
+			// printf("mask zero -> %d\n", data->info.mask);
 			data->format++;
 		}
 	}
 	// Si presence de '-' et '0' -> '0' ignoré
 	if (data->info.mask == (IS_MINUS | IS_ZERO)) // 3 IS_MINUS | IS_ZERO
 		data->info.mask ^= IS_ZERO; // XOR ou exclusif 1 ^ 1 = 0 
-	printf("mask after is_flags -> %d\n", data->info.mask);
+	print_debug("mask after is_flags ->", data, 'M');
+	// printf("mask after is_flags -> %d\n", data->info.mask);
 }
 
 int		ft_atoi_cancer(char **str) //get width
@@ -62,22 +65,24 @@ int		ft_atoi_cancer(char **str) //get width
 
 void	is_width(t_data *data)
 {
-	printf("\n********* IS_WIDTH *********\n");
+	print_debug("\n********* IS_WIDTH *********\n", data, 'S');
 	if ((data->info.width_value = ft_atoi_cancer(&data->format)) > -1)
 		data->info.mask |= IS_WIDTH;
 	else // erreur : la width > INT_MAX
 		data->info.width_value = 0;
-	printf("width_value -> %d\n", data->info.width_value);
-	printf("mask -> %d\n", data->info.mask);
+	print_debug("width_value ->", data, 'W');
+	print_debug("mask ->", data, 'M');
+	// printf("width_value -> %d\n", data->info.width_value);
+	// printf("mask -> %d\n", data->info.mask);
 }
 
 void	get_width(t_data *data) // possibilite de faire une ft get_arg
 {
-	printf("\n********* GET_WIDTH *********\n");
+	print_debug("\n********* GET_WIDTH *********\n", data, 'S');
 	data->info.width_value = va_arg(data->ap, int);
 	data->info.mask |= IS_WIDTH;
-	printf("width_value -> %d\n", data->info.width_value);
-	printf("mask -> %d\n", data->info.mask);
+	print_debug("width_value ->", data, 'W');
+	print_debug("mask ->", data, 'M');
 	data->format++; //(1) a voir si ici ou dans le if
 }
 
@@ -86,15 +91,17 @@ void	get_width(t_data *data) // possibilite de faire une ft get_arg
 
 void	is_precision(t_data *data)
 {
-		printf("\n********* IS_PRECISION *********\n");
+		print_debug("\n********* IS_PRECISION *********\n",data, 'S');
 		data->format++;
 		if(*data->format == '*')
 		{
 			// get_arg -> mettre la valeur dans data->info.prec_value
 			data->info.prec_value = va_arg(data->ap, int);
 			data->info.mask |= IS_PRECISION;
-			printf("*prec_value -> %d\n", data->info.prec_value);
-			printf("mask -> %d\n", data->info.mask);
+			print_debug("*prec_value ->", data, 'P');
+			print_debug("mask ->", data, 'M');
+			// printf("*prec_value -> %d\n", data->info.prec_value);
+			// printf("mask -> %d\n", data->info.mask);
 			data->format++; // (1) a voir si ici ou dans le if
 		}
 		else if (*data->format >= '0' && *data->format <= '9')
@@ -104,8 +111,8 @@ void	is_precision(t_data *data)
 				data->info.mask |= IS_PRECISION;
 			else // erreur : la width > INT_MAX
 				data->info.prec_value = 0;
-			printf("prec_value -> %d\n", data->info.prec_value);
-			printf("mask -> %d\n", data->info.mask);
+			print_debug("prec_value ->", data, 'P');
+			print_debug("mask ->", data, 'M');
 			// data->format++; // (1) a voir si ici ou dans le if
 		}
 		else
