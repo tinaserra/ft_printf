@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 17:46:44 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/14 10:58:19 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/16 21:01:09 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct	s_data {
 int		ft_printf(const char *str, ...);
 void	parsing(t_data *data);
 int		get_format(t_data *data);
+// void	print_debug(char *str, t_data *data);
 
 // tableau de tableau de pointeur de fonction
 void	is_flag(t_data *data);

@@ -6,7 +6,7 @@
 #    By: vserra <vserra@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/25 22:05:00 by vserra            #+#    #+#              #
-#    Updated: 2020/02/12 18:48:37 by vserra           ###   ########.fr        #
+#    Updated: 2020/02/16 21:22:09 by vserra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,19 +15,15 @@ SRC		=	ft_printf.c\
 			parsing_utils.c\
 			type_c.c
 
-OBJ		=		$(SRC:%.c=$(PRE_OBJ)%.o) #regle implicite -> peut etre un mauvais vocabulaire
+OBJ		=		$(SRC:%.c=$(PRE_OBJ)%.o)
 
 DEP		=		$(SRC:%.c=$(PRE_OBJ)%.d)
 
-OBJS	=		$(addprefix $(PRE_OBJ), $(OBJ))
+PRE_SRC	=	srcs/
 
-SRCS	=		$(addprefix $(PRE_SRC), $(SRC))
+PRE_OBJ	=	objs/
 
-PRE_SRC	=	./srcs/
-
-PRE_OBJ	=	./objs/
-
-HEAD	=	./includes/
+HEAD	=	includes/
 
 NAME	=	libftprintf.a
 
@@ -37,25 +33,27 @@ LIB		=	ranlib
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra # -Werror # -MMD -> creer des .d
+override CFLAGS	+=	-Wall -Wextra -MMD # -Werror # -MMD -> creer des .d
+# override -> permet de reecrirela suite de la variable
+
+opti:
+	make -j all
+# -j = jobs (separe les taches de compile)
 
 all: $(NAME) # nom de l'executable
 
 $(PRE_OBJ)%.o: $(PRE_SRC)%.c
-	#echo OBJ $< | $@
 	mkdir -p $(PRE_OBJ)
 	$(CC) $(CFLAGS) -I $(HEAD) -c $< -o $@
 # -p créer les dossiers s'ils n'existent pas
 
--include $(DEP)
-$(PRE_OBJ)%.d: $(PRE_SRC)%.c
-	# echo DEP $< | $@
-	mkdir -p $(PRE_OBJ)
-	$(CC) -MMD -I $(HEAD) $< -o $@
-
 $(NAME) : $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 	$(LIB) $(NAME)
+	@echo chouette ca compile
+
+debug : fclean
+	make opti CFLAGS:=-DDEBUG
 
 clean :
 	rm -rf $(PRE_OBJ)
@@ -63,14 +61,19 @@ clean :
 fclean : clean
 	rm -f $(NAME)
 
-re : fclean all
+re :
+	@make fclean
+	@make opti
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re opti
+
+-include $(DEP)
 
 # $@	Le nom de la cible / regle
 # $<	Le nom de la première dépendance
 # $^	La liste des dépendances
 # $?	La liste des dépendances plus récentes que la cible
 # $*	Le nom du fichier sans suffixe
+# @		Met en silence la ligne executée
 
 # %.o: %.c -> regle generique : par exemple construire un .o à partir d'un .c qui se verront appelées par défaut

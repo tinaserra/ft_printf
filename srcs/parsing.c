@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 19:01:06 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/15 18:21:14 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/16 18:59:29 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,33 +32,47 @@ void reset_info(t_data *data) //memset ou bzero
 	data->info.prec_value = 0;
 }
 
+#ifdef DEBUG
+// #define print_debug
 void	print_debug(char *str, t_data *data)
 {
-	printf("PUUUUUUTE\n");
+	// printf("PUUUUUUTE\n");
 	printf("%s	|%s|\n", str, data->format);
 }
+#else
+void	print_debug(char *str, t_data *data)
+{
+	return ;
+}
+#endif
+
 
 int		get_format(t_data *data)
 {
 	printf("\n********* GET_FORMAT *********\n");
 	print_debug("Format BEFORE", data);
+	// printf("Format BEFOOOOORE	|%s|\n", data->format);
 	reset_info(data);
 	data->mode = FLAGS;
 	g_parse[data->mode][*data->format](data);
-	printf("AFTER FLAGS	|%s|\n", data->format);
+	print_debug("AFTER FLAGS", data);
+	// printf("AFTER FLAGS	|%s|\n", data->format);
 	data->mode = WIDTH;
 	g_parse[data->mode][*data->format](data);
-	printf("AFTER WIDTH	|%s|\n", data->format);
+	print_debug("AFTER WIDTH", data);
+	// printf("AFTER WIDTH	|%s|\n", data->format);
 	data->mode = PRECISION;
 	g_parse[data->mode][*data->format](data);
-	printf("AFTER PRECISION	|%s|\n", data->format);
+	print_debug("AFTER PRECISION", data);
+	// printf("AFTER PRECISION	|%s|\n", data->format);
 	data->mode = TYPE;
 	if(g_parse[data->mode][*data->format](data)) // != 0
 	{
 		printf("ERROR |%s|\n", data->format);
 		return(-1); // UB -> se casser de print f
 	}
-	printf("AFTER TYPE	|%s|\n", data->format);
+	print_debug("AFTER TYPE", data);
+	// printf("AFTER TYPE	|%s|\n", data->format);
 	return (0);
 }
 
@@ -87,11 +101,6 @@ void	parsing(t_data *data)
 	/* TEST */
 	// return (i);
 }
-
-// faire une fonction pour initialiser ma structure a 0
-	// info->mask = 0;
-	// info->width_value = 0;
-	// info->prec_value = 0;
 
 // void	get_format(t_data *data)
 // {
