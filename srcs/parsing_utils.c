@@ -6,14 +6,11 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 20:48:36 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/15 17:39:43 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/21 17:01:39 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdint.h>
 #include "ft_printf.h"
-
-// data->info.mask |= IS_PRECISION; data->info.mask = (data->info.mask | IS_PRECISION);
 
 void	is_flag(t_data *data)
 {
@@ -24,14 +21,12 @@ void	is_flag(t_data *data)
 		{
 			data->info.mask |= IS_MINUS;
 			print_debug("mask minus ->", data, 'M');
-			// printf("mask minus -> %d\n", data->info.mask);
 			data->format++;
 		}
 		if (*data->format == '0')
 		{
 			data->info.mask |= IS_ZERO;
 			print_debug("mask zero ->", data, 'M');
-			// printf("mask zero -> %d\n", data->info.mask);
 			data->format++;
 		}
 	}
@@ -39,10 +34,9 @@ void	is_flag(t_data *data)
 	if (data->info.mask == (IS_MINUS | IS_ZERO)) // 3 IS_MINUS | IS_ZERO
 		data->info.mask ^= IS_ZERO; // XOR ou exclusif 1 ^ 1 = 0 
 	print_debug("mask after is_flags ->", data, 'M');
-	// printf("mask after is_flags -> %d\n", data->info.mask);
 }
 
-int		ft_atoi_cancer(char **str) //get width
+int		ft_atoi_cancer(char **str)
 {
 	int			len;
 	long long	value;
@@ -56,10 +50,7 @@ int		ft_atoi_cancer(char **str) //get width
 	}
 	*str += len;
 	if (value > INT_MAX)
-		// *str -= len - 1;
 		value = -1;
-	// else
-		// *str++;
 	return (value);
 }
 
@@ -72,22 +63,24 @@ void	is_width(t_data *data)
 		data->info.width_value = 0;
 	print_debug("width_value ->", data, 'W');
 	print_debug("mask ->", data, 'M');
-	// printf("width_value -> %d\n", data->info.width_value);
-	// printf("mask -> %d\n", data->info.mask);
 }
 
-void	get_width(t_data *data) // possibilite de faire une ft get_arg
+void	get_width(t_data *data)
 {
 	print_debug("\n********* GET_WIDTH *********\n", data, 'S');
+	print_debug("width_value = 0 ? ->", data, 'W');
 	data->info.width_value = va_arg(data->ap, int);
+	if (data->info.width_value < 0)
+	{
+		print_debug("width_value negative ? ->", data, 'W');
+		data->info.width_value *= -1;
+		data->info.mask |= IS_MINUS;
+	}
 	data->info.mask |= IS_WIDTH;
 	print_debug("width_value ->", data, 'W');
 	print_debug("mask ->", data, 'M');
-	data->format++; //(1) a voir si ici ou dans le if
+	data->format++;
 }
-
-// (1) ->	veut-on continuer a get_format si une width ou autre n'est pas correcte?
-//			est-ce qu'on continue printf, gere-ton les autres formats ?
 
 void	is_precision(t_data *data)
 {
@@ -95,25 +88,26 @@ void	is_precision(t_data *data)
 		data->format++;
 		if(*data->format == '*')
 		{
-			// get_arg -> mettre la valeur dans data->info.prec_value
 			data->info.prec_value = va_arg(data->ap, int);
-			data->info.mask |= IS_PRECISION;
+			if (data->info.prec_value < 1)
+			{
+				print_debug("prec_value negative ? ->", data, 'P');
+				data->info.prec_value = 0; // PRECISION IGNORE
+			}
+			else
+				data->info.mask |= IS_PRECISION;
 			print_debug("*prec_value ->", data, 'P');
 			print_debug("mask ->", data, 'M');
-			// printf("*prec_value -> %d\n", data->info.prec_value);
-			// printf("mask -> %d\n", data->info.mask);
 			data->format++; // (1) a voir si ici ou dans le if
 		}
 		else if (*data->format >= '0' && *data->format <= '9')
 		{
-			//get_num /!\ le chiffre qui suit ne peut pas etre negatif (warning)
-			if ((data->info.prec_value = ft_atoi_cancer(&data->format)) > -1)
+			if ((data->info.prec_value = ft_atoi_cancer(&data->format)) > 0)
 				data->info.mask |= IS_PRECISION;
 			else // erreur : la width > INT_MAX
 				data->info.prec_value = 0;
 			print_debug("prec_value ->", data, 'P');
 			print_debug("mask ->", data, 'M');
-			// data->format++; // (1) a voir si ici ou dans le if
 		}
 		else
 			data->info.mask |= IS_POINT;

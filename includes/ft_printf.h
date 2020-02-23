@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 17:46:44 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/16 21:01:09 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/23 19:19:33 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 ** # define IS_WIDTH		1 << 2 -> 4
 ** # define IS_PRECISION	1 << 3 -> 8
 ** # define IS_POINT		1 << 4 -> 16
-** # define IS_STAR			1 << 5 -> 32
 */
 
 #ifndef FT_PRINTF_H
@@ -33,7 +32,6 @@
 # define IS_WIDTH		4
 # define IS_PRECISION	8
 # define IS_POINT		16
-// # define IS_STAR		32
 
 typedef enum	e_mode{
 	FLAGS = 0,
@@ -56,13 +54,16 @@ typedef struct	s_data {
 	va_list			ap;
 	t_info			info;
 	t_mode			mode;
+	int				nb_char;
 }				t_data;
 
 int		ft_printf(const char *str, ...);
 void	parsing(t_data *data);
 int		get_format(t_data *data);
-void	print_debug(char *str, t_data *data, int ctrl);
-void	 check_debug(t_data *data);
+void	*ft_memset(void *b, int c, size_t len);
+void	print_flags(int value, int nb_char, int c);
+void	print_zero_and_nb(t_data *data, int len, int nb);
+void	width_and_prec(t_data *data, int len);
 
 // tableau de tableau de pointeur de fonction
 void	is_flag(t_data *data);
@@ -70,7 +71,12 @@ void	is_width(t_data *data);
 void	get_width(t_data *data);
 void	is_precision(t_data *data);
 int		type_c(t_data *data);
+int		type_d(t_data *data);
+void	ft_putnbr(int nb);
 int		ft_segfault();
 
+// DEBUG
+void	print_debug(char *str, t_data *data, int ctrl);
+void	check_debug(t_data *data);
 
 #endif

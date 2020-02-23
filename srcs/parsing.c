@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 19:01:06 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/16 18:59:29 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/18 17:45:42 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,55 +26,27 @@ int		ft_segfault()
 
 void reset_info(t_data *data) //memset ou bzero
 {
-	// printf("\nreset info\n");
+	print_debug("\n********* RESET INFOS *********\n", data, 'S');
 	data->info.mask = 0;
 	data->info.width_value = 0;
 	data->info.prec_value = 0;
+	data->nb_char = 0; // seulement une fois
 }
-
-#ifdef DEBUG
-void	print_debug(char *str, t_data *data, int ctrl)
-{
-	if (ctrl == 'S')
-		printf("%s\n", str);
-	if (ctrl == 'F')
-		printf("%s |%s|\n", str, data->format);
-	if (ctrl == 'W')
-		printf("%s %d\n", str, data->info.width_value);
-	if (ctrl == 'P')
-		printf("%s %d\n", str, data->info.prec_value);
-	if (ctrl == 'M')
-		printf("%s %d\n", str, data->info.mask);
-}
-#else
-void	print_debug(char *str, t_data *data, int ctrl)
-{
-	(void)str;
-	(void)data;
-	(void)ctrl;
-	return ;
-}
-#endif
-
 
 int		get_format(t_data *data)
 {
+	reset_info(data);
 	print_debug("\n********* GET_FORMAT *********\n", data, 'S');
 	print_debug("Format BEFORE", data, 'F');
-	// printf("Format BEFOOOOORE	|%s|\n", data->format);
-	reset_info(data);
 	data->mode = FLAGS;
 	g_parse[data->mode][*data->format](data);
 	print_debug("AFTER FLAGS", data, 'F');
-	// printf("AFTER FLAGS	|%s|\n", data->format);
 	data->mode = WIDTH;
 	g_parse[data->mode][*data->format](data);
 	print_debug("AFTER WIDTH", data, 'F');
-	// printf("AFTER WIDTH	|%s|\n", data->format);
 	data->mode = PRECISION;
 	g_parse[data->mode][*data->format](data);
 	print_debug("AFTER PRECISION", data, 'F');
-	// printf("AFTER PRECISION	|%s|\n", data->format);
 	data->mode = TYPE;
 	if(g_parse[data->mode][*data->format](data)) // != 0
 	{
@@ -82,7 +54,6 @@ int		get_format(t_data *data)
 		return(-1); // UB -> se casser de print f
 	}
 	print_debug("\nAFTER TYPE", data, 'F');
-	// printf("AFTER TYPE	|%s|\n", data->format);
 	return (0);
 }
 
@@ -90,11 +61,11 @@ void	parsing(t_data *data)
 {
 	int i;
 
-	i = 0;
 	// Parcourir et afficher str jusqu'a %
-	while (data->format[i])
+	while (*(data->format))
 	{
-		while(data->format[i] != '%' && data->format[i]) // /!\ si on est sur un '\0'
+		i = 0;
+		while(data->format[i] != '%' && data->format[i])
 			i++;
 		write(1, data->format, i);
 		data->format += i;
@@ -104,8 +75,7 @@ void	parsing(t_data *data)
 			data->format++;
 			get_format(data); // verif si on est sur un '%'
 		}
-		return ;
-		// i++;
+		// return ;
 	}
 	/* TEST */
 	// return (i);
