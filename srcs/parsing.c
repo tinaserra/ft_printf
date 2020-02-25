@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 19:01:06 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/18 17:45:42 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/25 18:26:12 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ void reset_info(t_data *data) //memset ou bzero
 {
 	print_debug("\n********* RESET INFOS *********\n", data, 'S');
 	data->info.mask = 0;
-	data->info.width_value = 0;
-	data->info.prec_value = 0;
-	data->nb_char = 0; // seulement une fois
+	data->info.w_value = 0;
+	data->info.p_value = 0;
 }
 
 int		get_format(t_data *data)
@@ -62,13 +61,17 @@ void	parsing(t_data *data)
 	int i;
 
 	// Parcourir et afficher str jusqu'a %
+	data->nb_char = 0;
 	while (*(data->format))
 	{
 		i = 0;
 		while(data->format[i] != '%' && data->format[i])
 			i++;
+		data->nb_char += i;
+		// printf("%d")
 		write(1, data->format, i);
 		data->format += i;
+		print_debug("\nnb_char =", data, 'N');
 		// Decouper et recuperer les infos du format
 		if(*data->format == '%') //useless ?
 		{

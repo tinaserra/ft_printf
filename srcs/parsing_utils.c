@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 20:48:36 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/25 16:54:54 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/25 18:26:12 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,27 +57,27 @@ static int	ft_bb_atoi(char **str)
 void	is_width(t_data *data)
 {
 	print_debug("\n********* IS_WIDTH *********\n", data, 'S');
-	if ((data->info.width_value = ft_bb_atoi(&data->format)) > -1)
+	if ((data->info.w_value = ft_bb_atoi(&data->format)) > -1)
 		data->info.mask |= IS_WIDTH;
 	else // erreur : la width > INT_MAX
-		data->info.width_value = 0;
-	print_debug("width_value ->", data, 'W');
+		data->info.w_value = 0;
+	print_debug("w_value ->", data, 'W');
 	print_debug("mask ->", data, 'M');
 }
 
 void	get_width(t_data *data)
 {
 	print_debug("\n********* GET_WIDTH *********\n", data, 'S');
-	print_debug("width_value = 0 ? ->", data, 'W');
-	data->info.width_value = va_arg(data->ap, int);
-	if (data->info.width_value < 0)
+	print_debug("w_value = 0 ? ->", data, 'W');
+	data->info.w_value = va_arg(data->ap, int);
+	if (data->info.w_value < 0)
 	{
-		print_debug("width_value negative ? ->", data, 'W');
-		data->info.width_value *= -1;
+		print_debug("w_value negative ? ->", data, 'W');
+		data->info.w_value *= -1;
 		data->info.mask |= IS_MINUS;
 	}
 	data->info.mask |= IS_WIDTH;
-	print_debug("width_value ->", data, 'W');
+	print_debug("w_value ->", data, 'W');
 	print_debug("mask ->", data, 'M');
 	data->format++;
 }
@@ -88,21 +88,21 @@ void	is_precision(t_data *data)
 		data->format++;
 		if(*data->format == '*')
 		{
-			data->info.prec_value = va_arg(data->ap, int);
-			if (data->info.prec_value < 1)
-				data->info.prec_value = 0;
+			data->info.p_value = va_arg(data->ap, int);
+			if (data->info.p_value < 1)
+				data->info.p_value = 0;
 			data->info.mask |= IS_PRECISION;
-			print_debug("*prec_value ->", data, 'P');
+			print_debug("*p_value ->", data, 'P');
 			print_debug("mask ->", data, 'M');
 			data->format++;
 		}
 		else if (*data->format >= '0' && *data->format <= '9')
 		{
-			if ((data->info.prec_value = ft_bb_atoi(&data->format)) > 0)
+			if ((data->info.p_value = ft_bb_atoi(&data->format)) > 0)
 				data->info.mask |= IS_PRECISION;
 			else // erreur : la width > INT_MAX
-				data->info.prec_value = 0;
-			print_debug("prec_value ->", data, 'P');
+				data->info.p_value = 0;
+			print_debug("p_value ->", data, 'P');
 			print_debug("mask ->", data, 'M');
 		}
 		else
@@ -114,20 +114,20 @@ void	is_precision(t_data *data)
 // void	is_width(char **format, t_info *info) //get width
 // {
 // 	int			len;
-// 	long long	width_value;
+// 	long long	w_value;
 
 // 	len = 0;
-// 	width_value = 0;
+// 	w_value = 0;
 // 	while ((*format)[len] >= '0' && (*format)[len] <= '9' && len < 11)
 // 	{
-// 		width_value = width_value * 10 + (*format)[len] - '0';
+// 		w_value = w_value * 10 + (*format)[len] - '0';
 // 		len++;
 // 	}
 // 	*format += len;
 // 	data->info.mask = (data->info.mask | IS_WIDTH); // est-ce un doublon d'information ?
-// 	if (width_value > INT_MAX)
+// 	if (w_value > INT_MAX)
 // 		*format -= len - 1;
 // 	else
-// 		data->info.width_value = width_value;
+// 		data->info.w_value = w_value;
 // 		*format++;
 // }

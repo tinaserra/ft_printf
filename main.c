@@ -5,16 +5,25 @@
 
 int main()
 {
-	int nb = -15;
+	int nb = INT_MIN;
+	// int ret;
 
-	ft_printf("\nft_printf :	{%0.*d}", -7, nb);
-	printf("\nprintf :	{%0.*d}", -7, nb);
-	// ft_printf("\nft_printf :	{%0*.*d}", -5, -5, 0);
-	// printf("\nprintf :	{%0*.*d}", -5, -5, 0);
-	// ft_printf("\nft_printf :	{%-20.15d}", 2147483647);
-	// printf("\nprintf :	{%-20.15d}", 2147483647);
-	// ft_printf("\nft_printf :	coucou {%*c} ... {%*c} lala", -9, 'A', 2147483647, 'B');
-	// printf("\nprintf :	coucou {%*c} ... {%*c} lala", -9, 'A', 6, 'B');
+
+
+	// ret = ft_printf("\n123456789%c", 'A');
+
+	// printf("\nprintf :	{%.d}\n", nb);
+	// ft_printf("ft_printf :	{%.d}\n", nb);
+	// printf("\nprintf :	{%0*.*d}\n", -5, -5, 0);
+	// ft_printf("ft_printf :	{%0*.*d}\n", -5, -5, 0);
+	// printf("\nprintf :	{%-20.15d}\n", 2147483647);
+	// ft_printf("ft_printf :	{%-20.15d}\n", 2147483647);
+
+	// printf("\nprintf :	coucou {%*c} lala\n", 6, 'B');
+	// ft_printf("ft_printf :	coucou {%*c} lala\n", 6, 'B');
+	printf("\nprintf :	coucou {%*c} ... {%*c} lala\n", 9, 'A', -6, 'B');
+	ft_printf("ft_printf :	coucou {%*c} ... {%*c} lala\n", 9, 'A', -6, 'B');
+	// printf("\nreturn %d", ret);
 	return 0;
 }
 

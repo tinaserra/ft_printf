@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:22:41 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/24 17:06:25 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/25 18:26:12 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,13 @@ void	print_debug(char *str, t_data *data, int ctrl)
 	if (ctrl == 'F')
 		printf("%s |%s|\n", str, data->format);
 	if (ctrl == 'W')
-		printf("%s %d\n", str, data->info.width_value);
+		printf("%s %d\n", str, data->info.w_value);
 	if (ctrl == 'P')
-		printf("%s %d\n", str, data->info.prec_value);
+		printf("%s %d\n", str, data->info.p_value);
 	if (ctrl == 'M')
 		printf("%s %d\n", str, data->info.mask);
+	if (ctrl == 'N')
+		printf("%s %d\n", str, data->nb_char);
 }
 #else
 void	print_debug(char *str, t_data *data, int ctrl)

@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:21:11 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/25 15:59:42 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/25 18:26:12 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // '.12' -> 
 // '.' -> 
 
-void	ft_putnbr(int nb)
+void	ft_putnbr(int nb, t_data *data)
 {
 	char buffer[11];
 	int i;
@@ -40,6 +40,7 @@ void	ft_putnbr(int nb)
 		save = save - (save / power) * power;
 		power /= 10;
 	}
+	data->nb_char +=i;
 	write(1, &buffer, i);
 }
 
@@ -72,29 +73,29 @@ void	print_prec(t_data *data, int len, int nb)
 		if(data->info.mask & IS_MINUS)
 		{
 			print_debug("\nje suis dans minus\n", data, 'S');
-			print_flags(data->info.prec_value, len, '0');
-			ft_putnbr(nb);
+			print_flags(data, data->info.p_value, len, '0');
+			ft_putnbr(nb, data);
 		}
-		if (data->info.width_value > data->info.prec_value)
+		if (data->info.w_value > data->info.p_value)
 		{
 			print_debug("\nwidth est superieure a prec\n", data, 'S');
-			if (data->info.prec_value > len)
-				print_flags(data->info.width_value, data->info.prec_value, ' ');
-			else if (data->info.prec_value < len)
-				print_flags(data->info.width_value, len, ' ');
+			if (data->info.p_value > len)
+				print_flags(data, data->info.w_value, data->info.p_value, ' ');
+			else if (data->info.p_value < len)
+				print_flags(data, data->info.w_value, len, ' ');
 		}
 		if (!(data->info.mask & IS_MINUS))
 		{
 			print_debug("\nje suis dans !(minus)\n", data, 'S');
-			print_flags(data->info.prec_value, len, '0');
-			ft_putnbr(nb);
+			print_flags(data, data->info.p_value, len, '0');
+			ft_putnbr(nb, data);
 		}
 	}
 	else
 	{
 		print_debug("\nje suis dans autre yoloooo\n", data, 'S');
-		print_flags(data->info.prec_value, len, '0');
-		ft_putnbr(nb);
+		print_flags(data, data->info.p_value, len, '0');
+		ft_putnbr(nb, data);
 	}
 }
 
@@ -102,21 +103,21 @@ void	print_width(t_data *data, int len, int nb)
 {
 	print_debug("\n********* PRINT_WIDTH *********\n", data, 'S');
 	if(nb == 0 && data->info.mask & IS_POINT)
-		print_flags(data->info.width_value, 0, ' ');
+		print_flags(data, data->info.w_value, 0, ' ');
 	else if(data->info.mask & IS_MINUS)
 	{
 		print_debug("\nje suis dans minus de width\n", data, 'S');
-		ft_putnbr(nb);
-		print_flags(data->info.width_value, len, ' ');
+		ft_putnbr(nb, data);
+		print_flags(data, data->info.w_value, len, ' ');
 	}
 	else if(data->info.mask & IS_ZERO)
 	{
 		print_debug("\nje suis dans zero\n", data, 'S');
 		if (data->info.mask & IS_POINT)
-			print_flags(data->info.width_value, len, ' ');
+			print_flags(data, data->info.w_value, len, ' ');
 		else if (data->info.mask ^ IS_POINT)
-			print_flags(data->info.width_value, len, '0');
-		ft_putnbr(nb);
+			print_flags(data, data->info.w_value, len, '0');
+		ft_putnbr(nb, data);
 	}
 }
 
@@ -130,17 +131,22 @@ int			type_d(t_data *data)
 	check_debug(data);
 	print_debug("\n********* TYPE_D *********\n", data, 'S');
 	print_debug("\nmask ->", data, 'M');
-	if(data->info.mask == 0)
-		ft_putnbr(nb);
-	else if(data->info.mask == IS_WIDTH)
+	if(data->info.mask == IS_WIDTH)
 	{
-		print_flags(data->info.width_value, len, ' ');
-		ft_putnbr(nb);
+		print_flags(data, data->info.w_value, len, ' ');
+		ft_putnbr(nb, data);
 	}
 	else if (data->info.mask & IS_PRECISION)
 		print_prec(data, len, nb);
 	else if(data->info.mask & IS_WIDTH)
 		print_width(data, len, nb);
+	else if(data->info.mask == IS_POINT && nb == 0)
+	{
+		data->format++;
+		return(0);
+	}
+	else // si pas width et pas precision et pas (point et nb == 0)
+		ft_putnbr(nb, data);
 	data->format++;
 	return (0);
 }
