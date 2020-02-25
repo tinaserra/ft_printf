@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 20:48:36 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/21 17:01:39 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/25 16:54:54 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	is_flag(t_data *data)
 	print_debug("mask after is_flags ->", data, 'M');
 }
 
-int		ft_atoi_cancer(char **str)
+static int	ft_bb_atoi(char **str)
 {
 	int			len;
 	long long	value;
@@ -57,7 +57,7 @@ int		ft_atoi_cancer(char **str)
 void	is_width(t_data *data)
 {
 	print_debug("\n********* IS_WIDTH *********\n", data, 'S');
-	if ((data->info.width_value = ft_atoi_cancer(&data->format)) > -1)
+	if ((data->info.width_value = ft_bb_atoi(&data->format)) > -1)
 		data->info.mask |= IS_WIDTH;
 	else // erreur : la width > INT_MAX
 		data->info.width_value = 0;
@@ -90,19 +90,15 @@ void	is_precision(t_data *data)
 		{
 			data->info.prec_value = va_arg(data->ap, int);
 			if (data->info.prec_value < 1)
-			{
-				print_debug("prec_value negative ? ->", data, 'P');
-				data->info.prec_value = 0; // PRECISION IGNORE
-			}
-			else
-				data->info.mask |= IS_PRECISION;
+				data->info.prec_value = 0;
+			data->info.mask |= IS_PRECISION;
 			print_debug("*prec_value ->", data, 'P');
 			print_debug("mask ->", data, 'M');
-			data->format++; // (1) a voir si ici ou dans le if
+			data->format++;
 		}
 		else if (*data->format >= '0' && *data->format <= '9')
 		{
-			if ((data->info.prec_value = ft_atoi_cancer(&data->format)) > 0)
+			if ((data->info.prec_value = ft_bb_atoi(&data->format)) > 0)
 				data->info.mask |= IS_PRECISION;
 			else // erreur : la width > INT_MAX
 				data->info.prec_value = 0;

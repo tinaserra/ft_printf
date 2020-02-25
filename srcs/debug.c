@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:22:41 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/18 16:29:51 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/24 17:06:25 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	 check_debug(t_data *data)
 {
 	printf("\n********* CHECK_DEBUG *********\n");
 	if(data->info.mask & IS_ZERO)
-		printf("Flag ZERO -> Undefine Behaviour\n");
+		printf("Flag ZERO\n");
 	if(data->info.mask & IS_MINUS)
 		printf("Flag MINUS\n");
 	if(data->info.mask & IS_WIDTH)
-		printf("Présence width\n");
+		printf("width\n");
 	if(data->info.mask & IS_POINT)
-		printf(".point -> Nothing to do\n");
+		printf(".point\n");
 	if(data->info.mask & IS_PRECISION)
-		printf(".Precision -> Undefine Behaviour\n");
+		printf(".Precision\n");
 }
 #else
 void	 check_debug(t_data *data)

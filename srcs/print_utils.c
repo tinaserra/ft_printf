@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:52:56 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/23 17:23:25 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/24 19:23:57 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ void	*ft_memset(void *b, int c, size_t len)
 
 // write(1, &buff_minus, data->info.width_value - 1);
 
-void	print_flags(int value, int nb_char, int c)
+void	print_flags(int value, int ignored_char, int c)
 {
 	// int count = 0;
 	int len;
 	char buff[8192];
 
-	len = value - nb_char;
+	len = value - ignored_char;
 	ft_memset(buff, c, 8192);
 	while (len > 8192)
 	{
