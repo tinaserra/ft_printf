@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 20:48:36 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/25 18:26:12 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/29 15:20:51 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	is_flag(t_data *data)
 	print_debug("mask after is_flags ->", data, 'M');
 }
 
-static int	ft_bb_atoi(char **str)
+int	ft_bb_atoi(char **str)
 {
 	int			len;
 	long long	value;
@@ -89,16 +89,18 @@ void	is_precision(t_data *data)
 		if(*data->format == '*')
 		{
 			data->info.p_value = va_arg(data->ap, int);
-			if (data->info.p_value < 1)
-				data->info.p_value = 0;
-			data->info.mask |= IS_PRECISION;
+			// if (data->info.p_value < 1)
+			// 	data->info.p_value = 0;
+			// data->info.mask |= IS_PRECISION;
+			if (data->info.p_value >= 0)
+				data->info.mask |= IS_PRECISION;
 			print_debug("*p_value ->", data, 'P');
 			print_debug("mask ->", data, 'M');
 			data->format++;
 		}
 		else if (*data->format >= '0' && *data->format <= '9')
 		{
-			if ((data->info.p_value = ft_bb_atoi(&data->format)) > 0)
+			if ((data->info.p_value = ft_bb_atoi(&data->format)) >= 0)
 				data->info.mask |= IS_PRECISION;
 			else // erreur : la width > INT_MAX
 				data->info.p_value = 0;
@@ -106,7 +108,7 @@ void	is_precision(t_data *data)
 			print_debug("mask ->", data, 'M');
 		}
 		else
-			data->info.mask |= IS_POINT;
+			data->info.mask |= IS_PRECISION;
 }
 
 // anciennement "atoi cancer" ---->

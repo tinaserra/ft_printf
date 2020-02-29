@@ -6,13 +6,13 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:52:56 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/25 18:58:27 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/26 18:52:31 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+static void	*ft_memset(void *b, int c, size_t len)
 {
 	unsigned int	i;
 	unsigned char	*temp;
@@ -28,9 +28,7 @@ void	*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-// write(1, &buff_minus, data->info.w_value - 1);
-
-void	print_flags(t_data *data, int value, int ignored_char, int c)
+void		print_flags(t_data *data, int value, int ignored_char, int c)
 {
 	// int count = 0;
 	int len;

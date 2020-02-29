@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:21:11 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/25 18:26:12 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/29 16:36:30 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // '.12' -> 
 // '.' -> 
 
-void	ft_putnbr(int nb)
+void	write_nbr(int nb)
 {
 	char buffer[11];
 	int i;
@@ -66,7 +66,7 @@ static int	nb_len(nb)
 // void	print_zero_and_nb(t_data *data, int len, int nb)
 // {
 // 	print_flags(data->info.p_value, len, '0');
-// 	ft_putnbr(nb);
+// 	write_nbr(nb);
 // }
 
 // void	width_and_prec(t_data *data, int len)
@@ -91,7 +91,7 @@ static int	nb_len(nb)
 // 		print_flags(data->info.w_value, len, ' ');
 // 	if(data->info.mask == 5) // width + minus
 // 	{
-// 		ft_putnbr(nb);
+// 		write_nbr(nb);
 // 		print_flags(data->info.w_value, len, ' ');
 // 	}
 // 	if(data->info.mask == 6 || data->info.mask == 8) // width + zero ou precision seul
@@ -107,7 +107,7 @@ static int	nb_len(nb)
 // 		width_and_prec(data, len);
 // 	}
 // 	if(data->info.mask == 0 || data->info.mask == 4)
-// 		ft_putnbr(nb);
+// 		write_nbr(nb);
 // 	data->format++;
 // 	return (0);
 // }
@@ -115,14 +115,14 @@ static int	nb_len(nb)
 // void	print_zero_and_nb(t_data *data, int len, int nb)
 // {
 // 	print_flags(data->info.w_value, len, '0');
-// 	ft_putnbr(nb);
+// 	write_nbr(nb);
 // }
 
 ////// cas 2
 
-void	print_prec(t_data *data, int len, int nb)
+void	calc_precision(t_data *data, int len, int nb)
 {
-	print_debug("\n********* PRINT_PREC *********\n", data, 'S');
+	print_debug("\n********* calc_precision *********\n", data, 'S');
 	if(data->info.mask & IS_WIDTH)
 	{
 		print_debug("\nje suis dans width\n", data, 'S');
@@ -130,7 +130,7 @@ void	print_prec(t_data *data, int len, int nb)
 		{
 			print_debug("\nje suis dans minus\n", data, 'S');
 			print_flags(data->info.p_value, len, '0');
-			ft_putnbr(nb);
+			write_nbr(nb);
 		}
 		if (data->info.w_value > data->info.p_value)
 		{
@@ -144,24 +144,24 @@ void	print_prec(t_data *data, int len, int nb)
 		{
 			print_debug("\nje suis dans !(minus)\n", data, 'S');
 			print_flags(data->info.p_value, len, '0');
-			ft_putnbr(nb);
+			write_nbr(nb);
 		}
 	}
 	else
 	{
 		print_debug("\nje suis dans autre yoloooo\n", data, 'S');
 		print_flags(data->info.p_value, len, '0');
-		ft_putnbr(nb);
+		write_nbr(nb);
 	}
 }
 
-void	print_width(t_data *data, int len, int nb)
+void	calc_width(t_data *data, int len, int nb)
 {
-	print_debug("\n********* PRINT_WIDTH *********\n", data, 'S');
+	print_debug("\n********* calc_width *********\n", data, 'S');
 	if(data->info.mask & IS_MINUS)
 	{
 		print_debug("\nje suis dans minus de width\n", data, 'S');
-		ft_putnbr(nb);
+		write_nbr(nb);
 		print_flags(data->info.w_value, len, ' ');
 	}
 	else if(data->info.mask & IS_ZERO)
@@ -171,7 +171,7 @@ void	print_width(t_data *data, int len, int nb)
 			print_flags(data->info.w_value, len, ' ');
 		else if (data->info.mask ^ IS_POINT)
 			print_flags(data->info.w_value, len, '0');
-		ft_putnbr(nb);
+		write_nbr(nb);
 	}
 }
 
@@ -186,21 +186,21 @@ int			type_d(t_data *data)
 	print_debug("\n********* TYPE_D *********\n", data, 'S');
 	print_debug("\nmask ->", data, 'M');
 	if(data->info.mask == 0)
-		ft_putnbr(nb);
+		write_nbr(nb);
 	if(data->info.mask == IS_WIDTH)
 	{
 		print_flags(data->info.w_value, len, ' ');
-		ft_putnbr(nb);
+		write_nbr(nb);
 	}
 	// if (data->info.mask == IS_PRECISION)
 	// {
 	// 	print_flags(data->info.p_value, len, '0');
-	// 	ft_putnbr(nb);
+	// 	write_nbr(nb);
 	// }
 	if (data->info.mask & IS_PRECISION)
-		print_prec(data, len, nb);
+		calc_precision(data, len, nb);
 	else if(data->info.mask & IS_WIDTH)
-		print_width(data, len, nb);
+		calc_width(data, len, nb);
 	data->format++;
 	return (0);
 }
@@ -218,24 +218,24 @@ int			type_d(t_data *data)
 // 	print_debug("\n********* TYPE_D *********\n", data, 'S');
 // 	print_debug("\nmask ->", data, 'M');
 // 	if (data->info.mask & IS_PRECISION) // PRECISION ONLY
-// 		print_prec(data, len, nb);
+// 		calc_precision(data, len, nb);
 // 	else if (data->info.mask  == (IS_WIDTH | IS_MINUS))
 // 	{
-// 		ft_putnbr(nb);
+// 		write_nbr(nb);
 // 		print_flags(data->info.w_value, len, ' ');
 // 	}
 // 	else if (data->info.mask == (IS_WIDTH | IS_ZERO))
 // 	{
 // 		print_flags(data->info.w_value, len, '0');
-// 		ft_putnbr(nb);
+// 		write_nbr(nb);
 // 	}
 // 	else if (data->info.mask == IS_WIDTH || data->info.mask == 22)
 // 	{
 // 		print_flags(data->info.w_value, len, ' ');
-// 		ft_putnbr(nb);
+// 		write_nbr(nb);
 // 	}
 // 	if (data->info.mask == 0)
-// 		ft_putnbr(nb);
+// 		write_nbr(nb);
 // 	data->format++;
 // 	return (0);
 // }

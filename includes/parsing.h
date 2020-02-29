@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:37:31 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/19 17:03:57 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/29 15:18:03 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,23 @@
 int (*g_parse[ERROR][256])() =
 {
 	[FLAGS] = {
-		[0 ... 255] = ft_segfault,
+		[0 ... 44] = ft_segfault,
+		['-'] = is_flag,
+		[46 ... 47] = ft_segfault,
 		['0'] = is_flag,
-		['-'] = is_flag
+		[49 ... 255] = ft_segfault
 	},
 	[WIDTH] = {
-		[0 ... 255] = ft_segfault,
+		[0 ... 41] = ft_segfault,
+		['*'] = get_width,
+		[43 ... 47] = ft_segfault,
 		['0' ... '9'] = is_width,
-		['*'] = get_width
+		[58 ... 255] = ft_segfault
 	},
 	[PRECISION] = {
-		[0 ... 255] = ft_segfault,
-		['.'] = is_precision
+		[0 ... 45] = ft_segfault,
+		['.'] = is_precision,
+		[47 ... 255] = ft_segfault
 	},
 	// [TYPE] = {
 		// [0 ... 255] = ft_segfault,
@@ -46,9 +51,14 @@ int (*g_parse[ERROR][256])() =
 		// ['%'] = type_pourcent
 	// }
 	[TYPE] = {
-		[0 ... 255] = ft_segfault,
+		[0 ... 98] = ft_segfault,
 		['c'] = type_c,
-		['d'] = type_d
+		['d'] = type_d,
+		[101 ... 104] = ft_segfault,
+		['i'] = type_d,
+		[106 ... 116] = ft_segfault,
+		['u'] = type_u,
+		[118 ... 255] = ft_segfault
 	},
 };
 

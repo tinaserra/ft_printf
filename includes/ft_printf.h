@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 17:46:44 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/25 18:56:19 by vserra           ###   ########.fr       */
+/*   Updated: 2020/02/29 16:36:30 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,25 +57,43 @@ typedef struct	s_data {
 	int				nb_char;
 }				t_data;
 
+/*
+** GENERAL
+*/
+
 int		ft_printf(const char *str, ...);
 void	parsing(t_data *data);
 int		get_format(t_data *data);
-void	*ft_memset(void *b, int c, size_t len);
-void	print_flags(t_data *data, int value, int ignored_char, int c);
-void	print_zero_and_nb(t_data *data, int len, int nb);
-void	width_and_prec(t_data *data, int len);
 
-// tableau de tableau de pointeur de fonction
+/*
+** TAB PARSING
+*/
+
 void	is_flag(t_data *data);
 void	is_width(t_data *data);
 void	get_width(t_data *data);
 void	is_precision(t_data *data);
 int		type_c(t_data *data);
 int		type_d(t_data *data);
-void	ft_putnbr(int nb, t_data *data);
+int		type_u(t_data *data);
 int		ft_segfault();
 
-// DEBUG
+/*
+** UTILS
+*/
+
+// void	*ft_memset(void *b, int c, size_t len);
+int		ft_bb_atoi(char **str);
+void	print_flags(t_data *data, int value, int ignored_char, int c);
+int		nb_len(long nb);
+void	write_nbr(long nb, t_data *data);
+void	calc_precision(t_data *data, int len, long nb);
+void	calc_width(t_data *data, size_t len, long nb);
+
+/*
+** DEBUG
+*/
+
 void	print_debug(char *str, t_data *data, int ctrl);
 void	check_debug(t_data *data);
 
