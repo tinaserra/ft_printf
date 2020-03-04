@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:17:49 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/25 18:54:15 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/02 15:26:38 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int		type_c(t_data *data)
 			data->nb_char += 1;
 			write(1, &c, 1);
 		}
-		print_flags(data, data->info.w_value, 1, ' ');
+		if (data->info.mask & IS_ZERO)
+			print_flags(data, data->info.w_value, 1, '0');
+		else
+			print_flags(data, data->info.w_value, 1, ' ');
 	}
 	if (!(data->info.mask & IS_MINUS))
 	{

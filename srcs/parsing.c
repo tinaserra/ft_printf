@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 19:01:06 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/26 17:53:44 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/03 18:35:08 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	parsing(t_data *data)
 		while(data->format[i] != '%' && data->format[i])
 			i++;
 		data->nb_char += i;
-		// printf("%d")
 		write(1, data->format, i);
 		data->format += i;
 		print_debug("\nnb_char =", data, 'N');
@@ -78,10 +77,7 @@ void	parsing(t_data *data)
 			data->format++;
 			get_format(data); // verif si on est sur un '%'
 		}
-		// return ;
 	}
-	/* TEST */
-	// return (i);
 }
 
 // void	get_format(t_data *data)

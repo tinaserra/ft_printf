@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 17:46:44 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/29 16:36:30 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/03 20:38:10 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct	s_data {
 	t_info			info;
 	t_mode			mode;
 	int				nb_char;
+	char			buff_nb[16];
 }				t_data;
 
 /*
@@ -76,6 +77,8 @@ void	is_precision(t_data *data);
 int		type_c(t_data *data);
 int		type_d(t_data *data);
 int		type_u(t_data *data);
+int		type_x(t_data *data);
+int		type_p(t_data *data);
 int		ft_segfault();
 
 /*
@@ -85,8 +88,10 @@ int		ft_segfault();
 // void	*ft_memset(void *b, int c, size_t len);
 int		ft_bb_atoi(char **str);
 void	print_flags(t_data *data, int value, int ignored_char, int c);
-int		nb_len(long nb);
-void	write_nbr(long nb, t_data *data);
+// int		nb_len(long nb);
+int		putnbr(long nb, t_data *data);
+int		putnbr_base(unsigned long nbr, char *base, t_data *data);
+void	put_addr(void *addr, t_data *data, int *len);
 void	calc_precision(t_data *data, int len, long nb);
 void	calc_width(t_data *data, size_t len, long nb);
 

@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:52:56 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/26 18:52:31 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/03 14:47:49 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	*ft_memset(void *b, int c, size_t len)
 
 void		print_flags(t_data *data, int value, int ignored_char, int c)
 {
-	// int count = 0;
 	int len;
 	char buff[8192];
 
@@ -40,10 +39,7 @@ void		print_flags(t_data *data, int value, int ignored_char, int c)
 	{
 		write(1, &buff, 8192);
 		len -= 8192;
-		// count += 8192;
 	}
 	data->nb_char +=len;
 	write(1, &buff, len);
-	// count += len;
-	// printf("len = %d\n", count);
 }

@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 14:41:51 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/29 16:36:30 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/02 18:47:34 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,21 @@ int			type_u(t_data *data)
 	int len;
 	
 	nb = va_arg(data->ap, unsigned int);
-	len = nb_len(nb);
+	// len = nb_len(nb);
+	len = putnbr(nb, data);
 	check_debug(data);
 	print_debug("\n********* TYPE_D *********\n", data, 'S');
 	print_debug("\nmask ->", data, 'M');
-	// if(data->info.mask == IS_WIDTH)
-	// {
-	// 	print_flags(data, data->info.w_value, len, ' ');
-	// 	write_nbr(nb, data);
-	// }
-	if (data->info.mask & IS_PRECISION) // Utile ?
-		data->info.mask ^= IS_ZERO;
 	if (data->info.mask & IS_PRECISION)
+	{
+		data->info.mask ^= IS_ZERO;
 		calc_precision(data, len, nb);
+	}
 	else if(data->info.mask & IS_WIDTH)
 		calc_width(data, len, nb);
-	// else if (data->info.mask == IS_POINT && nb == 0) //|| (data->info.p_value == 0 && nb == 0))
-	// {
-	// 	data->format++;
-	// 	return(0);
-	// }
-	else // si pas width et pas precision et pas (point et nb == 0)
-		write_nbr(nb, data);
+	else
+		// putnbr(nb, data);
+		write(1, &(data->buff_nb), len);
 	data->format++;
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: vserra <vserra@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/25 22:05:00 by vserra            #+#    #+#              #
-#    Updated: 2020/02/26 18:20:30 by vserra           ###   ########.fr        #
+#    Updated: 2020/03/04 14:15:18 by vserra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ SRC		=	ft_printf.c\
 			type_c.c\
 			type_d.c\
 			type_u.c\
+			type_x.c\
+			type_p.c\
 			debug.c
 
 OBJ		=		$(SRC:%.c=$(PRE_OBJ)%.o)
