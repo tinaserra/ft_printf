@@ -26,6 +26,7 @@ void	 check_debug(t_data *data)
 		printf(".point\n");
 	if(data->info.mask & IS_PRECISION)
 		printf(".Precision\n");
+	printf("Maks -> %d\n", data->info.mask);
 }
 #else
 void	 check_debug(t_data *data)

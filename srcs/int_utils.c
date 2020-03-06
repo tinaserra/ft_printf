@@ -46,9 +46,8 @@ int		putnbr_base(unsigned long nbr, char *base, t_data *data)
 
 	len = 0;
 	save = nbr;
-	// power = nbr >= 0 ? 1 : -1;
 	power = 1;
-	while (/*nbr <= -16 || */nbr >= 16)
+	while (nbr >= 16)
 	{
 		nbr /= 16;
 		power *= 16;
@@ -63,22 +62,6 @@ int		putnbr_base(unsigned long nbr, char *base, t_data *data)
 		len++;
 	data->nb_char += len;
 	return (len);
-}
-
-void	print_prefix(t_data *data, long nb, int len, int c)
-{
-	if (nb < 0 && *data->format != 'p')
-		write(1, "-", 1);
-	if (*data->format == 'p')
-	{
-		write(1, "0x", 2);
-		data->nb_char += 2;
-	}
-	if (c == 'P')
-		print_flags(data, data->info.p_value, len, '0');
-	if (c == 'W')
-		print_flags(data, data->info.w_value, len, '0');
-	write(1, &(data->buff_nb), len);
 }
 
 void	specific(t_data *data)

@@ -89,9 +89,6 @@ void	is_precision(t_data *data)
 		if(*data->format == '*')
 		{
 			data->info.p_value = va_arg(data->ap, int);
-			// if (data->info.p_value < 1)
-			// 	data->info.p_value = 0;
-			// data->info.mask |= IS_PRECISION;
 			if (data->info.p_value >= 0)
 				data->info.mask |= IS_PRECISION;
 			print_debug("*p_value ->", data, 'P');

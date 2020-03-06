@@ -79,6 +79,7 @@ int		type_d(t_data *data);
 int		type_u(t_data *data);
 int		type_x(t_data *data);
 int		type_p(t_data *data);
+int		type_s(t_data *data);
 int		ft_segfault();
 
 /*
@@ -88,7 +89,7 @@ int		ft_segfault();
 // void	*ft_memset(void *b, int c, size_t len);
 int		ft_bb_atoi(char **str);
 void	print_flags(t_data *data, int value, int ignored_char, int c);
-// int		nb_len(long nb);
+void	print_prefix(t_data *data, long nb, int len, int c);
 int		putnbr(long nb, t_data *data);
 int		putnbr_base(unsigned long nbr, char *base, t_data *data);
 void	put_addr(void *addr, t_data *data, int *len);

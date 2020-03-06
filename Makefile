@@ -20,6 +20,7 @@ SRC		=	ft_printf.c\
 			type_u.c\
 			type_x.c\
 			type_p.c\
+			type_s.c\
 			debug.c
 
 OBJ		=		$(SRC:%.c=$(PRE_OBJ)%.o)

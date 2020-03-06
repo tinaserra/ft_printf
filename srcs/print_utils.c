@@ -43,3 +43,19 @@ void		print_flags(t_data *data, int value, int ignored_char, int c)
 	data->nb_char +=len;
 	write(1, &buff, len);
 }
+
+void	print_prefix(t_data *data, long nb, int len, int c)
+{
+	if (nb < 0 && *data->format != 'p')
+		write(1, "-", 1);
+	if (*data->format == 'p')
+	{
+		write(1, "0x", 2);
+		data->nb_char += 2;
+	}
+	if (c == 'P')
+		print_flags(data, data->info.p_value, len, '0');
+	if (c == 'W')
+		print_flags(data, data->info.w_value, len, '0');
+	write(1, &(data->buff_nb), len);
+}
