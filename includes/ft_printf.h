@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 17:46:44 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/03 20:38:10 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/07 04:25:13 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int		type_u(t_data *data);
 int		type_x(t_data *data);
 int		type_p(t_data *data);
 int		type_s(t_data *data);
+int		type_pourcent(t_data *data);
 int		ft_segfault();
 
 /*

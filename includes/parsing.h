@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:37:31 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/03 16:12:01 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/07 04:26:52 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ int (*g_parse[ERROR][256])() =
 		// ['%'] = type_pourcent
 	// }
 	[TYPE] = {
-		[0 ... 87] = ft_segfault,
+		[0 ... 36] = ft_segfault,
+		['%'] = type_pourcent,
+		[38 ... 87] = ft_segfault,
 		['X'] = type_x,
 		[89 ... 98] = ft_segfault,
 		['c'] = type_c,
@@ -60,7 +62,9 @@ int (*g_parse[ERROR][256])() =
 		['i'] = type_d,
 		[106 ... 111] = ft_segfault,
 		['p'] = type_p,
-		[113 ... 116] = ft_segfault,
+		[113 ... 114] = ft_segfault,
+		['s'] = type_s,
+		[116] = ft_segfault,
 		['u'] = type_u,
 		[118 ... 119] = ft_segfault,
 		['x'] = type_x,

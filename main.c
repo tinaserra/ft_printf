@@ -7,7 +7,7 @@ int main()
 {
 	int w = 18;
 	int p = 12;
-	char *str = "Hola que tal";
+	char *str = "123456789";
 	char c = 'Q';
 	int nb = -42;
 	unsigned int unb = 1111;
@@ -25,8 +25,8 @@ int main()
 	// ft_printf("ft_printf :	coucou {%*c} ... {%*c} lala\n", 9, 'A', -6, 'B');
 	// printf("\nreturn %d", ret);
 
-	// printf("\nprintf :	{%07.1d}\n", nb);
-	// ft_printf("ft_printf :	{%07.1d}\n", nb);
+	// printf("\nprintf :	{%s}\n", str);
+	// ft_printf("ft_printf :	{%s}\n", str);
 	// printf("\nprintf :	{%-7.1d}\n", nb);
 	// ft_printf("ft_printf :	{%-7.1d}\n", nb);
 
@@ -40,11 +40,11 @@ int main()
 
 	str = NULL; w = 10; p = 4; 
 	printf("\nprintf :	.1 {%s}  .2 {%*s}  .3 {%-*s}  .4 {%0*s}  .5 {%0*.s}  .6 {%-*.s}  .7 {%*.s}  .8 {%.*s}  .9 {%-.*s}  .10 {%0.*s}  .11 {%*.*s}  .12 {%0*.*s}  .13 {%-*.*s}\n", str, w, str, w, str, w, str, w, str, w, str, w, str, p, str, p, str, p, str, w, p, str, w, p, str, w, p, str);
-	// ft_printf("ft_printf :	.1 {%s}  .2 {%*s}  .3 {%-*s}  .4 {%0*s}  .5 {%0*.s}  .6 {%-*.s}  .7 {%*.s}  .8 {%.*s}  .9 {%-.*s}  .10 {%0.*s}  .11 {%*.*s}  .12 {%0*.*s}  .13 {%-*.*s}\n", str, w, str, w, str, w, str, w, str, w, str, w, str, p, str, p, str, p, str, w, p, str, w, p, str, w, p, str);
+	ft_printf("ft_printf :	.1 {%s}  .2 {%*s}  .3 {%-*s}  .4 {%0*s}  .5 {%0*.s}  .6 {%-*.s}  .7 {%*.s}  .8 {%.*s}  .9 {%-.*s}  .10 {%0.*s}  .11 {%*.*s}  .12 {%0*.*s}  .13 {%-*.*s}\n", str, w, str, w, str, w, str, w, str, w, str, w, str, p, str, p, str, p, str, w, p, str, w, p, str, w, p, str);
 
 	str = "Aie Caramba !"; w = 20; p = -7;
 	printf("\nprintf :	.1 {%s}  .2 {%*s}  .3 {%-*s}  .4 {%0*s}  .5 {%0*.s}  .6 {%-*.s}  .7 {%*.s}  .8 {%.*s}  .9 {%-.*s}  .10 {%0.*s}  .11 {%*.*s}  .12 {%0*.*s}  .13 {%-*.*s}\n", str, w, str, w, str, w, str, w, str, w, str, w, str, p, str, p, str, p, str, w, p, str, w, p, str, w, p, str);
-	// ft_printf("ft_printf :	.1 {%s}  .2 {%*s}  .3 {%-*s}  .4 {%0*s}  .5 {%0*.s}  .6 {%-*.s}  .7 {%*.s}  .8 {%.*s}  .9 {%-.*s}  .10 {%0.*s}  .11 {%*.*s}  .12 {%0*.*s}  .13 {%-*.*s}\n", str, w, str, w, str, w, str, w, str, w, str, w, str, p, str, p, str, p, str, w, p, str, w, p, str, w, p, str);
+	ft_printf("ft_printf :	.1 {%s}  .2 {%*s}  .3 {%-*s}  .4 {%0*s}  .5 {%0*.s}  .6 {%-*.s}  .7 {%*.s}  .8 {%.*s}  .9 {%-.*s}  .10 {%0.*s}  .11 {%*.*s}  .12 {%0*.*s}  .13 {%-*.*s}\n", str, w, str, w, str, w, str, w, str, w, str, w, str, p, str, p, str, p, str, w, p, str, w, p, str, w, p, str);
 
 	printf("\n😎\n");
 
