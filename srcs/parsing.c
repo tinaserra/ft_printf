@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 19:01:06 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/07 03:10:16 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/08 19:01:22 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ int		get_format(t_data *data)
 	g_parse[data->mode][*data->format](data);
 	print_debug("AFTER PRECISION", data, 'F');
 	data->mode = TYPE;
-	print_debug("\nJe segfault ici je suis un gros pd\n",data, 'S');
 	if(g_parse[data->mode][*data->format](data)) // != 0
 	{
 		print_debug("ERROR", data, 'F');
-		return(-1); // UB -> se casser de print f
+		data->nb_char = -1;
+		return(data->nb_char); // UB -> se casser de print f
 	}
 	print_debug("\nAFTER TYPE", data, 'F');
 	return (0);
@@ -76,7 +76,8 @@ void	parsing(t_data *data)
 		if(*data->format == '%') //useless ?
 		{
 			data->format++;
-			get_format(data); // verif si on est sur un '%'
+			if (get_format(data) == -1) // verif si on est sur un '%'
+				return ;
 		}
 	}
 }

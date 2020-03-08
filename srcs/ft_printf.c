@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 18:42:50 by vserra            #+#    #+#             */
-/*   Updated: 2020/02/25 18:03:18 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/08 21:25:34 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int		ft_printf(const char *str, ...)
 
 	i = 0;
 	data.format = (unsigned char *)str;
+	ft_memset(data.buff_space, ' ', 8192);
+	ft_memset(data.buff_zero, '0', 8192);
 	va_start(data.ap, str);
 	parsing(&data);
 	va_end(data.ap);

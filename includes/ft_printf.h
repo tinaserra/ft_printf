@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 17:46:44 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/07 04:25:13 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/08 21:24:30 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct	s_data {
 	t_mode			mode;
 	int				nb_char;
 	char			buff_nb[16];
+	char			buff_space[8192];
+	char			buff_zero[8192];
 }				t_data;
 
 /*
@@ -70,10 +72,10 @@ int		get_format(t_data *data);
 ** TAB PARSING
 */
 
-void	is_flag(t_data *data);
-void	is_width(t_data *data);
-void	get_width(t_data *data);
-void	is_precision(t_data *data);
+int		is_flag(t_data *data);
+int		is_width(t_data *data);
+int		get_width(t_data *data);
+int		is_precision(t_data *data);
 int		type_c(t_data *data);
 int		type_d(t_data *data);
 int		type_u(t_data *data);
@@ -88,7 +90,7 @@ int		ft_segfault();
 */
 
 // void	*ft_memset(void *b, int c, size_t len);
-int		ft_bb_atoi(char **str);
+int		bb_atoi(unsigned char **str);
 void	print_flags(t_data *data, int value, int ignored_char, int c);
 void	print_prefix(t_data *data, long nb, int len, int c);
 int		putnbr(long nb, t_data *data);

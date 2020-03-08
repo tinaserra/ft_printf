@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:17:49 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/06 21:33:28 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/08 20:52:24 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		type_c(t_data *data)
 {
 	char c;
 	
-	c = va_arg(data->ap, char);
+	c = (char)va_arg(data->ap, int);
 	print_debug("\n********* TYPE_C *********\n", data, 'S');
 	check_debug(data);
 	print_debug("\nmask ->", data, 'M');

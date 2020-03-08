@@ -6,19 +6,19 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 18:15:19 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/07 04:43:17 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/08 21:09:18 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <limits.h>
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 int main()
 {
 	int w = -5;
 	int p = 2;
-	char *str = "bonjoue yohann";
+	char *str = "bonjour yohann";
 
 	// str = NULL;
 

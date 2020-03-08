@@ -6,13 +6,13 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 20:48:36 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/06 21:39:43 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/08 20:47:32 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	is_flag(t_data *data)
+int	is_flag(t_data *data)
 {
 	print_debug("\n********* IS_FLAGS *********\n", data, 'S');
 	while (*data->format == '-' || *data->format == '0')
@@ -34,9 +34,10 @@ void	is_flag(t_data *data)
 	if (data->info.mask == (IS_MINUS | IS_ZERO)) // 3 IS_MINUS | IS_ZERO
 		data->info.mask ^= IS_ZERO; // XOR ou exclusif 1 ^ 1 = 0 
 	print_debug("mask after is_flags ->", data, 'M');
+	return (0);
 }
 
-int	ft_bb_atoi(char **str)
+int	bb_atoi(unsigned char **str)
 {
 	int			len;
 	long long	value;
@@ -54,35 +55,41 @@ int	ft_bb_atoi(char **str)
 	return (value);
 }
 
-void	is_width(t_data *data)
+int	is_width(t_data *data)
 {
 	print_debug("\n********* IS_WIDTH *********\n", data, 'S');
-	if ((data->info.w_value = ft_bb_atoi(&data->format)) > -1)
+	if ((data->info.w_value = bb_atoi(&data->format)) > -1)
 		data->info.mask |= IS_WIDTH;
 	else // erreur : la width > INT_MAX
 		data->info.w_value = 0;
 	print_debug("w_value ->", data, 'W');
 	print_debug("mask ->", data, 'M');
+	return (0);
 }
 
-void	get_width(t_data *data)
+int	get_width(t_data *data)
 {
 	print_debug("\n********* GET_WIDTH *********\n", data, 'S');
 	print_debug("w_value = 0 ? ->", data, 'W');
 	data->info.w_value = va_arg(data->ap, int);
+	if (data->info.w_value == -2147483648)
+		data->info.w_value = 0;
 	if (data->info.w_value < 0)
 	{
 		print_debug("w_value negative ? ->", data, 'W');
 		data->info.w_value *= -1;
 		data->info.mask |= IS_MINUS;
+		if (data->info.mask == (IS_MINUS | IS_ZERO))
+			data->info.mask ^= IS_ZERO;
 	}
 	data->info.mask |= IS_WIDTH;
 	print_debug("w_value ->", data, 'W');
 	print_debug("mask ->", data, 'M');
 	data->format++;
+	return (0);
 }
 
-void	is_precision(t_data *data)
+int	is_precision(t_data *data)
 {
 	print_debug("\n********* IS_PRECISION *********\n",data, 'S');
 	data->format++;
@@ -97,7 +104,7 @@ void	is_precision(t_data *data)
 	}
 	else if (*data->format >= '0' && *data->format <= '9')
 	{
-		if ((data->info.p_value = ft_bb_atoi(&data->format)) >= 0)
+		if ((data->info.p_value = bb_atoi(&data->format)) >= 0)
 			data->info.mask |= IS_PRECISION;
 		else // erreur : la width > INT_MAX
 			data->info.p_value = 0;
@@ -105,12 +112,8 @@ void	is_precision(t_data *data)
 		print_debug("mask ->", data, 'M');
 	}
 	else
-	{
-		// print_debug("\nJe segfault ici\n",data, 'S');
-		// data->info.p_value = 0;
-		// print_debug("\nJe met p_value a 0\n",data, 'S');
 		data->info.mask |= IS_PRECISION;
-	}
+	return (0);
 }
 
 // anciennement "atoi cancer" ---->

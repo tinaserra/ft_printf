@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:52:31 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/04 16:54:28 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/08 20:54:00 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 int		type_p(t_data *data)
 {
-	void *addr;
+	long addr;
 	int len;
 	
-	addr = va_arg(data->ap, void*);
+	addr = (long)va_arg(data->ap, void*);
 	len = putnbr_base(addr, "0123456789abcdef", data);
 	data->info.w_value -= 2;
 	// check_debug(data);
