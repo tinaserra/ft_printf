@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:22:41 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/09 01:25:25 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/09 17:16:23 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,24 @@ void	print_debug(char *str, t_data *data, int ctrl)
 	(void)str;
 	(void)data;
 	(void)ctrl;
+	return ;
+}
+
+#endif
+
+#ifdef DEBUG
+
+void	debug_int(char *str, int nb)
+{
+	printf("%s %d\n", str, nb);
+}
+
+#else
+
+void	debug_int(char *str, int nb)
+{
+	(void)str;
+	(void)nb;
 	return ;
 }
 

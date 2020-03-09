@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:21:11 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/09 00:58:50 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/09 17:20:24 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 ** '.'			-> precison value = 0
 */
 
+/*
+** check_debug(data);
+** print_debug("\n********* TYPE_D *********\n", data, 'S');
+** debug_int("len = ", len);
+** print_debug("\nnb_char =", data, 'N');
+*/
+
 int			type_d(t_data *data)
 {
 	int	nb;
@@ -29,8 +36,6 @@ int			type_d(t_data *data)
 
 	nb = va_arg(data->ap, int);
 	len = putnbr(nb, data);
-	check_debug(data);
-	print_debug("\n********* TYPE_D *********\n", data, 'S');
 	if (data->info.mask & IS_PRECISION)
 	{
 		data->info.mask ^= IS_ZERO;

@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 02:13:08 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/09 01:19:47 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/09 17:21:58 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	print_string(t_data *data, char *s, int len)
 
 static void	cut_string(t_data *data, int len, char *s)
 {
-	print_debug("\n********* CUT_STRING *********\n", data, 'S');
 	if (data->info.mask & IS_WIDTH)
 	{
 		if (data->info.mask & IS_MINUS)

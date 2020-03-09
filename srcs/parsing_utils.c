@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 20:48:36 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/09 00:39:44 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/09 17:15:11 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** FLAGS '-' and '0' -> '0' ignored
 */
 
-int	is_flag(t_data *data)
+int			is_flag(t_data *data)
 {
 	print_debug("\n********* IS_FLAGS *********\n", data, 'S');
 	while (*data->format == '-' || *data->format == '0')
@@ -37,7 +37,7 @@ int	is_flag(t_data *data)
 	return (0);
 }
 
-int	bb_atoi(unsigned char **str)
+static int	bb_atoi(unsigned char **str)
 {
 	int			len;
 	long long	value;
@@ -55,27 +55,28 @@ int	bb_atoi(unsigned char **str)
 	return (value);
 }
 
-int	is_width(t_data *data)
+/*
+** ATTENTION en cas de width > INT_MAX
+*/
+
+int			is_width(t_data *data)
 {
 	print_debug("\n********* IS_WIDTH *********\n", data, 'S');
 	if ((data->info.w_value = bb_atoi(&data->format)) > -1)
-	{
-		data->nb_char = -1;
 		data->info.mask |= IS_WIDTH;
-	}
 	else
 		data->info.w_value = 0;
 	return (0);
 }
 
-int	get_width(t_data *data)
+int			get_width(t_data *data)
 {
 	print_debug("\n********* GET_WIDTH *********\n", data, 'S');
 	data->info.w_value = va_arg(data->ap, int);
 	if (data->info.w_value == -2147483648)
 	{
 		data->nb_char = -1;
-		data->info.w_value = 0;
+		return (-1);
 	}
 	if (data->info.w_value < 0)
 	{
@@ -89,7 +90,7 @@ int	get_width(t_data *data)
 	return (0);
 }
 
-int	is_precision(t_data *data)
+int			is_precision(t_data *data)
 {
 	print_debug("\n********* IS_PRECISION *********\n", data, 'S');
 	data->format++;

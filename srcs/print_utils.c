@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:52:56 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/09 00:43:57 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/09 17:17:49 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ void	print_flags(t_data *data, int value, int ignored_char, int c)
 {
 	int	len;
 
+	print_debug("\n********* PRINT_FLAGS *********\n", data, 'S');
 	len = value - ignored_char;
-	while (len > 8192)
+	if (len > 0)
+		data->nb_char += len;
+	while (len >= 8192)
 	{
 		if (c == ' ')
 			write(1, &(data->buff_space), 8192);
@@ -25,7 +28,6 @@ void	print_flags(t_data *data, int value, int ignored_char, int c)
 			write(1, &(data->buff_zero), 8192);
 		len -= 8192;
 	}
-	data->nb_char += len;
 	if (c == ' ')
 		write(1, &(data->buff_space), len);
 	if (c == '0')

@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:07:51 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/09 00:29:35 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/09 17:12:23 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int			putnbr(long nb, t_data *data)
 	len = 0;
 	save = nb;
 	power = nb >= 0 ? 1 : -1;
+	print_debug("\n********* PUTNBR *********\n", data, 'S');
 	while (nb <= -10 || nb >= 10)
 	{
 		nb /= 10;
@@ -47,6 +48,7 @@ int			putnbr_base(unsigned long nbr, char *base, t_data *data)
 	len = 0;
 	save = nbr;
 	power = 1;
+	print_debug("\n********* PUTNBR_BASE *********\n", data, 'S');
 	while (nbr >= 16)
 	{
 		nbr /= 16;
@@ -66,6 +68,7 @@ int			putnbr_base(unsigned long nbr, char *base, t_data *data)
 
 static void	specific(t_data *data)
 {
+	print_debug("\n********* SPECIFIC *********\n", data, 'S');
 	if (*data->format == 'p')
 	{
 		if (!(data->info.mask & IS_MINUS))
@@ -77,11 +80,14 @@ static void	specific(t_data *data)
 	}
 	else
 		print_flags(data, data->info.w_value, 0, ' ');
+	data->nb_char -= 1;
 }
 
 void		calc_precision(t_data *data, int len, long nb)
 {
 	print_debug("\n********* CALC_PRECISION *********\n", data, 'S');
+	debug_int("len = ", len);
+	print_debug("\nnb_char =", data, 'N');
 	if (nb < 0)
 		data->info.p_value++;
 	if (nb == 0 && data->info.p_value == 0)

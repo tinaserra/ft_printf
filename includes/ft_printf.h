@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 17:46:44 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/09 00:22:01 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/09 17:14:32 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int				error();
 ** UTILS
 */
 
-int				bb_atoi(unsigned char **str);
+// int				bb_atoi(unsigned char **str);
 int				putnbr(long nb, t_data *data);
 int				putnbr_base(unsigned long nbr, char *base, t_data *data);
 void			print_flags(t_data *data, int value, int ignored_char, int c);
@@ -101,5 +101,6 @@ void			calc_width(t_data *data, size_t len, long nb);
 
 void			print_debug(char *str, t_data *data, int ctrl);
 void			check_debug(t_data *data);
+void			debug_int(char *str, int nb);
 
 #endif

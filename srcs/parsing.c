@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 19:01:06 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/09 00:43:03 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/09 17:14:40 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int			get_format(t_data *data)
 {
 	reset_info(data);
 	print_debug("\n********* GET_FORMAT *********\n", data, 'S');
+	print_debug("\nnb_char =", data, 'N');
 	print_debug("Format BEFORE", data, 'F');
 	data->mode = FLAGS;
 	g_parse[data->mode][*data->format](data);
@@ -56,6 +57,7 @@ void		parsing(t_data *data)
 	int i;
 
 	data->nb_char = 0;
+	print_debug("\n********* PARSING *********\n", data, 'S');
 	while (*(data->format))
 	{
 		i = 0;
@@ -63,8 +65,8 @@ void		parsing(t_data *data)
 			i++;
 		data->nb_char += i;
 		write(1, data->format, i);
-		data->format += i;
 		print_debug("\nnb_char =", data, 'N');
+		data->format += i;
 		if (*data->format == '%')
 		{
 			data->format++;
