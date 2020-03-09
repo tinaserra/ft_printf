@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 17:46:44 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/08 21:24:30 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/09 00:22:01 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,12 @@
 # define IS_POINT		16
 
 typedef enum	e_mode{
-	FLAGS = 0,
+	FLAGS,
 	WIDTH,
 	PRECISION,
 	TYPE,
 	ERROR
 }				t_mode;
-
-//extern int (*g_tab[255])(void); //tableau pointeur sur fonction
 
 typedef struct	s_info {
 	char			mask;
@@ -64,46 +62,44 @@ typedef struct	s_data {
 ** GENERAL
 */
 
-int		ft_printf(const char *str, ...);
-void	parsing(t_data *data);
-int		get_format(t_data *data);
+int				ft_printf(const char *str, ...);
+void			parsing(t_data *data);
+int				get_format(t_data *data);
 
 /*
 ** TAB PARSING
 */
 
-int		is_flag(t_data *data);
-int		is_width(t_data *data);
-int		get_width(t_data *data);
-int		is_precision(t_data *data);
-int		type_c(t_data *data);
-int		type_d(t_data *data);
-int		type_u(t_data *data);
-int		type_x(t_data *data);
-int		type_p(t_data *data);
-int		type_s(t_data *data);
-int		type_pourcent(t_data *data);
-int		ft_segfault();
+int				is_flag(t_data *data);
+int				is_width(t_data *data);
+int				get_width(t_data *data);
+int				is_precision(t_data *data);
+int				type_c(t_data *data);
+int				type_d(t_data *data);
+int				type_u(t_data *data);
+int				type_x(t_data *data);
+int				type_p(t_data *data);
+int				type_s(t_data *data);
+int				type_pourcent(t_data *data);
+int				error();
 
 /*
 ** UTILS
 */
 
-// void	*ft_memset(void *b, int c, size_t len);
-int		bb_atoi(unsigned char **str);
-void	print_flags(t_data *data, int value, int ignored_char, int c);
-void	print_prefix(t_data *data, long nb, int len, int c);
-int		putnbr(long nb, t_data *data);
-int		putnbr_base(unsigned long nbr, char *base, t_data *data);
-void	put_addr(void *addr, t_data *data, int *len);
-void	calc_precision(t_data *data, int len, long nb);
-void	calc_width(t_data *data, size_t len, long nb);
+int				bb_atoi(unsigned char **str);
+int				putnbr(long nb, t_data *data);
+int				putnbr_base(unsigned long nbr, char *base, t_data *data);
+void			print_flags(t_data *data, int value, int ignored_char, int c);
+void			print_prefix(t_data *data, long nb, int len, int c);
+void			calc_precision(t_data *data, int len, long nb);
+void			calc_width(t_data *data, size_t len, long nb);
 
 /*
 ** DEBUG
 */
 
-void	print_debug(char *str, t_data *data, int ctrl);
-void	check_debug(t_data *data);
+void			print_debug(char *str, t_data *data, int ctrl);
+void			check_debug(t_data *data);
 
 #endif

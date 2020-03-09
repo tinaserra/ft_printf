@@ -6,46 +6,30 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:52:56 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/08 21:24:29 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/09 00:43:57 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	*ft_memset(void *b, int c, size_t len)
+void	print_flags(t_data *data, int value, int ignored_char, int c)
 {
-	unsigned int	i;
-	unsigned char	*temp;
-
-	i = 0;
-	temp = (unsigned char *)b;
-	while (i < len)
-	{
-		temp[i] = (unsigned char)c;
-		i++;
-	}
-	b = (void *)temp;
-	return (b);
-}
-
-void		print_flags(t_data *data, int value, int ignored_char, int c)
-{
-	int len;
+	int	len;
 
 	len = value - ignored_char;
 	while (len > 8192)
 	{
 		if (c == ' ')
 			write(1, &(data->buff_space), 8192);
-		if (c = '0')
+		if (c == '0')
 			write(1, &(data->buff_zero), 8192);
 		len -= 8192;
 	}
-	data->nb_char +=len;
+	data->nb_char += len;
 	if (c == ' ')
-		write(1, &(data->buff_space), 8192);
-	if (c = '0')
-		write(1, &(data->buff_zero), 8192);
+		write(1, &(data->buff_space), len);
+	if (c == '0')
+		write(1, &(data->buff_zero), len);
 }
 
 void	print_prefix(t_data *data, long nb, int len, int c)

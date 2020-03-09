@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 18:15:19 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/08 21:09:18 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/09 01:19:08 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 int main()
 {
-	int w = -5;
-	int p = 2;
+	int w = 0;
+	int p = 7;
 	char *str = "bonjour yohann";
 
 	// str = NULL;

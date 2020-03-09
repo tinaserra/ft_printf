@@ -6,20 +6,20 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:07:51 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/04 18:09:03 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/09 00:29:35 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		putnbr(long nb, t_data *data)
+int			putnbr(long nb, t_data *data)
 {
-	long save;
-	int len;
-	long power;
+	int		len;
+	long	save;
+	long	power;
 
-	save = nb;
 	len = 0;
+	save = nb;
 	power = nb >= 0 ? 1 : -1;
 	while (nb <= -10 || nb >= 10)
 	{
@@ -34,15 +34,15 @@ int		putnbr(long nb, t_data *data)
 	}
 	if (nb < 0)
 		len++;
-	data->nb_char +=len;
+	data->nb_char += len;
 	return (len);
 }
 
-int		putnbr_base(unsigned long nbr, char *base, t_data *data)
+int			putnbr_base(unsigned long nbr, char *base, t_data *data)
 {
-	unsigned long power;
-	unsigned long save;
-	int len;
+	int				len;
+	unsigned long	power;
+	unsigned long	save;
 
 	len = 0;
 	save = nbr;
@@ -64,31 +64,31 @@ int		putnbr_base(unsigned long nbr, char *base, t_data *data)
 	return (len);
 }
 
-void	specific(t_data *data)
+static void	specific(t_data *data)
 {
 	if (*data->format == 'p')
 	{
-		if(!(data->info.mask & IS_MINUS))
+		if (!(data->info.mask & IS_MINUS))
 			print_flags(data, data->info.w_value, 0, ' ');
 		write(1, "0x", 2);
 		data->nb_char += 2;
-		if(data->info.mask & IS_MINUS)
+		if (data->info.mask & IS_MINUS)
 			print_flags(data, data->info.w_value, 0, ' ');
 	}
 	else
 		print_flags(data, data->info.w_value, 0, ' ');
 }
 
-void	calc_precision(t_data *data, int len, long nb)
+void		calc_precision(t_data *data, int len, long nb)
 {
 	print_debug("\n********* CALC_PRECISION *********\n", data, 'S');
 	if (nb < 0)
 		data->info.p_value++;
 	if (nb == 0 && data->info.p_value == 0)
 		specific(data);
-	else if(data->info.mask & IS_WIDTH)
+	else if (data->info.mask & IS_WIDTH)
 	{
-		if(data->info.mask & IS_MINUS)
+		if (data->info.mask & IS_MINUS)
 			print_prefix(data, nb, len, 'P');
 		if (data->info.w_value > data->info.p_value)
 		{
@@ -104,26 +104,19 @@ void	calc_precision(t_data *data, int len, long nb)
 		print_prefix(data, nb, len, 'P');
 }
 
-
-void	calc_width(t_data *data, size_t len, long nb)
+void		calc_width(t_data *data, size_t len, long nb)
 {
 	print_debug("\n********* CALC_WIDTH *********\n", data, 'S');
-	if(data->info.mask & IS_MINUS)
+	if (data->info.mask & IS_MINUS)
 	{
-		print_debug("\nje suis dans minus de width\n", data, 'S');
 		print_prefix(data, nb, len, 'N');
 		print_flags(data, data->info.w_value, len, ' ');
 	}
-	else if(data->info.mask & IS_ZERO)
-	{
-		print_debug("\nje suis dans zero\n", data, 'S');
+	else if (data->info.mask & IS_ZERO)
 		print_prefix(data, nb, len, 'W');
-	}
-	else if(data->info.mask == IS_WIDTH)
+	else if (data->info.mask == IS_WIDTH)
 	{
-		print_debug("\nje suis la gros pd\n", data, 'S');
 		print_flags(data, data->info.w_value, len, ' ');
 		print_prefix(data, nb, len, 'N');
-
 	}
 }

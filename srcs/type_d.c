@@ -6,33 +6,37 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:21:11 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/03 15:55:14 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/09 00:58:50 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// '0' + width -> ajoute des zeros non significatifs jusqu'a atteindre la width
-// '-' + width -> alligner resultat a gauche jusqu'a atteindre la width
-// '.12' -> ajoute des zeros non significatifs jusqu'a atteindre la precision
-// '.' -> on considere que p_value = 0
+/*
+** GENERAL RULES FOR %d | %i | %u | %x | %X | %p
+**
+** width		-> Add ' ' until reaching the width value
+** '0' + width	-> Add '0' until reaching the width value
+** '-' + width	-> Allign the result to the left then add ' '
+** '.num'		-> Add '0' until reaching the precision value
+** '.'			-> precison value = 0
+*/
 
 int			type_d(t_data *data)
 {
-	int nb;
-	int len;
-	
+	int	nb;
+	int	len;
+
 	nb = va_arg(data->ap, int);
 	len = putnbr(nb, data);
 	check_debug(data);
 	print_debug("\n********* TYPE_D *********\n", data, 'S');
-	print_debug("\nmask ->", data, 'M');
 	if (data->info.mask & IS_PRECISION)
 	{
 		data->info.mask ^= IS_ZERO;
 		calc_precision(data, len, nb);
 	}
-	else if(data->info.mask & IS_WIDTH)
+	else if (data->info.mask & IS_WIDTH)
 		calc_width(data, len, nb);
 	else
 	{
