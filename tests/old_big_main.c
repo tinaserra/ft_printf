@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 03:52:56 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/10 15:29:49 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/09 15:50:27 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,64 @@
 #include <limits.h>
 #include "ft_printf.h"
 
-int		main()
+int		main(int ac, char **av)
 {
+	char *nombre; //int
+	char *width; //int
+	char *precision; //int
+	char *str; //char* string av[4]
+	
 	unsigned int unb;
 	unsigned int hexa;
 	int nb;
 	int w;
 	int p;
 
-	// ".1 {%s}  .2 {%-s}  .3 {%0s}\n"
-	// ".4 {%*s}  .5 {%-*s}  .6 {%0*s}\n"
-	// ".7 {%.s}  8. {%*.s}  9. {%0*.s}  .10 {%-*.s}\n"
-	// ".11 {%.*s}  .12 {%-.*s}  .13 {%0.*s}\n"
-	// ".14 {%*.*s}  .15 {%0*.*s}  .13 {%-*.*s}\n", str, w, str, w, str, w, str, w, str, w, str, w, str, p, str, p, str, p, str, w, p, str, w, p, str, w, p, str);
+	if (ac > 1)
+	{
+		printf("\n******************************************* int --> %% d *******************************************\n\n");
+		printf("AUGUMENTS : av[1] -> int || av[2] -> width || av[3] -> precision\n");
+		nombre = av[1];
+		printf("\nTEST width = 4\n");
+		printf("-----\n");
+		printf("printf\n|%04d| |%-04d| |%0-4d| |%04.d| |%-04.d| |%0-4.d|\n", atoi(nombre), atoi(nombre), atoi(nombre), atoi(nombre), atoi(nombre), atoi(nombre));
+		ft_printf("ft_printf\n|%04d| |%-04d| |%0-4d| |%04.d| |%-04.d| |%0-4.d|\n", atoi(nombre), atoi(nombre), atoi(nombre), atoi(nombre), atoi(nombre), atoi(nombre));
+		if (ac > 2)
+		{
+			width = av[2];
+			printf("\nTEST width = * %s\n", av[2]);
+			printf("-----\n");
+			printf("printf\n|%0*d| |%-0*d| |%0-*d| |%0*.d| |%-0*.d| |%0-*.d|\n", atoi(width), atoi(nombre), atoi(width), atoi(nombre), atoi(width), atoi(nombre), atoi(width), atoi(nombre), atoi(width), atoi(nombre), atoi(width), atoi(nombre));
+			ft_printf("ft_printf\n|%0*d| |%-0*d| |%0-*d| |%0*.d| |%-0*.d| |%0-*.d|\n", atoi(width), atoi(nombre), atoi(width), atoi(nombre), atoi(width), atoi(nombre), atoi(width), atoi(nombre), atoi(width), atoi(nombre), atoi(width), atoi(nombre));
 
+			printf("\nTEST precision = * %s\n", av[3]);
+			printf("-----\n");
+			printf("printf\n|%0.*d| |%-0.*d| |%0-.*d| |%.*d| |%-.*d|\n", atoi(width), atoi(nombre), atoi(width), atoi(nombre), atoi(width), atoi(nombre), atoi(width), atoi(nombre), atoi(width), atoi(nombre));
+			ft_printf("ft_printf\n|%0.*d| |%-0.*d| |%0-.*d| |%.*d| |%-.*d|\n", atoi(width), atoi(nombre), atoi(width), atoi(nombre), atoi(width), atoi(nombre), atoi(width), atoi(nombre), atoi(width), atoi(nombre));
+		}
+		if (ac > 3)
+		{
+			precision = av[3];
+			printf("\nTEST width = * %s | precision = * %s\n", av[2], av[3]);
+			printf("-----\n");
+			printf("printf\n|%d| |%*.*d| |%0*.*d| |%-*.*d| |%-0*.*d|\n", atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre));
+			ft_printf("ft_printf\n|%d| |%*.*d| |%0*.*d| |%-*.*d| |%-0*.*d|\n", atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre), atoi(width), atoi(precision), atoi(nombre));
+		}
+ 
+		if (ac > 4)
+		{
+			printf("\n\n******************************************* string --> %% s *******************************************\n\n");
+			printf("AUGUMENTS : av[4] -> string\n");
+			str = av[4];
+			printf("\nTEST width = * %s | precision = * %s | str = * %s\n", av[2], av[3], av[4]);
+			printf("-----\n");
+			printf("printf\n|%s| |%*.*s| |%-*.*s| |%0*.*s| |%-0*.*s|\n", str, atoi(width), atoi(precision), str, atoi(width), atoi(precision), str, atoi(width), atoi(precision), str, atoi(width), atoi(precision), str);
+			// ft_printf("ft_printf\n|%s| |%*.*s| |%-*.*s| |%0*.*s|\n", str, atoi(width), atoi(precision), str, atoi(width), atoi(precision), str, atoi(width), atoi(precision), str);
+		}
+
+	}
+	else if (ac == 1)
+	{
 printf("\n\n\n\n******************************************* int --> %% d *******************************************\n\n");
 		// printf("\n  ////////////////////////////////////////\n // Met un int en 1er argument ta race //\n////////////////////////////////////////\n");
 		nb = 12;
@@ -363,6 +407,7 @@ printf("\n\n\n\n******************************************* hexadecimal (unsigne
 // 		printf("printf\n|%.s| |%0.s| |%-.s| |%020.s| |%-20.s| |%0-20.s|\n", str, str, str, str, str, str);
 // 		// ft_printf("ft_printf\n|%.s| |%0.s| |%-.s| |%020.s| |%-20.s| |%0-20.s|\n", str, str, str, str, str, str);
 
+	}
 	// printf("\n😎\n");
 	return (0);
 }

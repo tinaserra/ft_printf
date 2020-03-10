@@ -12,5 +12,12 @@ libftprintf.a
 *.o
 *.d
 
+# CHECKER
+printf_lover_v2/
+Moumounator_printf/
+main_flo.c
+libc_output.txt
+user_output.txt
+
 # OTHERS
 .DS_Store

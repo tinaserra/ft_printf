@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:52:56 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/09 17:17:49 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/10 17:36:27 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,8 @@ void	print_prefix(t_data *data, long nb, int len, int c)
 		print_flags(data, data->info.p_value, len, '0');
 	if (c == 'W')
 		print_flags(data, data->info.w_value, len, '0');
-	write(1, &(data->buff_nb), len);
+	if (nb < 0 && (*data->format == 'd' || *data->format == 'i'))
+		write(1, &(data->buff_nb), len - 1);
+	else
+		write(1, &(data->buff_nb), len);
 }

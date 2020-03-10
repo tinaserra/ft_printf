@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:21:11 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/09 17:20:24 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/10 16:24:31 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,12 @@ int			type_d(t_data *data)
 	else
 	{
 		if (nb < 0)
+		{
 			write(1, "-", 1);
-		write(1, &(data->buff_nb), len);
+			write(1, &(data->buff_nb), len - 1);
+		}
+		else
+			write(1, &(data->buff_nb), len);
 	}
 	data->format++;
 	return (0);
