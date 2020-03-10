@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 03:52:56 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/10 15:29:49 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/10 19:22:11 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,26 @@
 
 int		main()
 {
+	int ret1 = 0;
+	int ret2 = 0;
 	unsigned int unb;
 	unsigned int hexa;
 	int nb;
 	int w;
 	int p;
 
-	// ".1 {%s}  .2 {%-s}  .3 {%0s}\n"
+	// ".1 {%s}  .2 {%-s}  .3 {%0s}\n",
 	// ".4 {%*s}  .5 {%-*s}  .6 {%0*s}\n"
 	// ".7 {%.s}  8. {%*.s}  9. {%0*.s}  .10 {%-*.s}\n"
 	// ".11 {%.*s}  .12 {%-.*s}  .13 {%0.*s}\n"
-	// ".14 {%*.*s}  .15 {%0*.*s}  .13 {%-*.*s}\n", str, w, str, w, str, w, str, w, str, w, str, w, str, p, str, p, str, p, str, w, p, str, w, p, str, w, p, str);
+	// ".14 {%*.*s}  .15 {%0*.*s}  .16 {%-*.*s}\n"
+
+	// printf("\nTEST nb = 12 | width = 4\n");
+	// printf("-----\n");
+	// printf("printf\n);
+	// ret1 = printf(".1 {%s}  .2 {%-s}  .3 {%0s}  .4 {%*s}  .5 {%-*s}  .6 {%0*s}\n", str, str, str, w, str, w, str, w, str);
+	// printf("ft_printf\n);
+	// ret2 = ft_printf(".1 {%s}  .2 {%-s}  .3 {%0s}  .4 {%*s}  .5 {%-*s}  .6 {%0*s}\n", str, str, str, w, str, w, str, w, str);
 
 printf("\n\n\n\n******************************************* int --> %% d *******************************************\n\n");
 		// printf("\n  ////////////////////////////////////////\n // Met un int en 1er argument ta race //\n////////////////////////////////////////\n");

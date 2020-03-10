@@ -6,7 +6,7 @@
 #    By: vserra <vserra@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/25 22:05:00 by vserra            #+#    #+#              #
-#    Updated: 2020/03/07 04:28:10 by vserra           ###   ########.fr        #
+#    Updated: 2020/03/10 18:04:50 by vserra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ LIB		=	ranlib
 
 CC		=	gcc
 
-override CFLAGS	+=	-Wall -Wextra -MMD # -Werror # -MMD -> creer des .d
+override CFLAGS	+=	-Wall -Wextra -MMD # -MMD -> creer des .d
 # override -> permet de reecrire la suite de la variable
 
 opti:

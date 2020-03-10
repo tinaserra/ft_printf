@@ -6,14 +6,14 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:37:31 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/08 22:38:27 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/10 18:37:13 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-int (*g_parse[ERROR][256])() =
+int (*g_totobite[ERROR][256])() =
 {
 	[FLAGS] = {
 		[0] = error,
