@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 19:01:06 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/10 18:30:45 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/10 21:57:24 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ int			get_format(t_data *data)
 	print_debug("\nnb_char =", data, 'N');
 	print_debug("Format BEFORE", data, 'F');
 	data->mode = FLAGS;
-	g_totobite[data->mode][*data->format](data);
+	g_parse[data->mode][*data->format](data);
 	print_debug("AFTER FLAGS", data, 'F');
 	data->mode = WIDTH;
-	g_totobite[data->mode][*data->format](data);
+	g_parse[data->mode][*data->format](data);
 	print_debug("AFTER WIDTH", data, 'F');
 	data->mode = PRECISION;
-	g_totobite[data->mode][*data->format](data);
+	g_parse[data->mode][*data->format](data);
 	print_debug("AFTER PRECISION", data, 'F');
 	data->mode = TYPE;
-	if (g_totobite[data->mode][*data->format](data))
+	if (g_parse[data->mode][*data->format](data))
 	{
 		print_debug("ERROR", data, 'F');
 		data->nb_char = -1;

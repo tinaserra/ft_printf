@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 17:46:44 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/10 15:54:08 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/10 21:58:09 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int				error();
 ** UTILS
 */
 
-// int				bb_atoi(unsigned char **str);
 int				putnbr(long nb, t_data *data);
 int				putnbr_base(unsigned long nbr, char *base, t_data *data);
 void			print_flags(t_data *data, int value, int ignored_char, int c);
