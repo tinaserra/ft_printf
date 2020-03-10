@@ -8,7 +8,7 @@
 
 ## Useful links
 
-* About [printf](https://docs.microsoft.com/fr-fr/cpp/c-runtime-library/format-specification-syntax-printf-and-wprintf-functions?view=vs-2019) in french
+* About [printf](https://docs.microsoft.com/fr-fr/cpp/c-runtime-library/format-specification-syntax-printf-and-wprintf-functions?view=vs-2019) (FR)
 * Or a [man printf](http://www.cplusplus.com/reference/cstdio/printf/)
 * Try out the [Bitwise commands](http://bitwisecmd.com/)
 
