@@ -24,7 +24,7 @@ The ```size``` is not requested in the subject.
 ### Type field character
 
 |Type character|Argument|Output format|
-<!-- |--------------|--------|-------------| -->
+|--------------|--------|-------------|
 |```c```|char|Displays UTF-8 characters. Specifies a single-byte character.|
 |```d```|int|Displays signed decimal.|
 |```i```|int|Displays signed decimal.|
