@@ -84,19 +84,12 @@ printf("%.5d", 123456); --> '123456'
 printf("%.0d", 0); --> '' /* No characters output */
 ```
 
-## Installation & Tests
-
-```
-$> make
-$> gcc -Iincludes libftprintf.a main.c && ./a.out
-```
-
 ## Bitwise operator
 
 Bitwise operator are usefull to parse the format string. 
 You can check the presence of ```-```, ```0```, ```width``` and ```precision``` very easy in a ```mask```.
 
-```
+```js
 define IS_MINUS		1 << 0
 define IS_ZERO		1 << 1
 define IS_WIDTH		1 << 2
@@ -105,29 +98,36 @@ define IS_PRECISION	1 << 3
 The type of the ```mask``` depends of the number of informations you need to stock. For example in a type ```char``` you can have 8.
 
 If ```-``` and ```0``` are present in the format string :
-```
+```js
 mask |= IS_MINUS;
 mask |= IS_ZERO;
 mask --> 0000 0011
 ```
 
-|Operator|Meanning                                           |
-|--------|---------------------------------------------------|
+|Operator|Meanning|
+|--------|--------|
 |```&```|Bitwise AND operator|
-|```|```|Bitwise OR operator|
-|```^```|Bitwise exclusive OR operator|
+|```'|'```|Bitwise OR operator|
+|```^```|Bitwise exclusive XOR operator|
 |```~```|Binary One's Complement Operator is a unary operator|
 |```<<```|Left shift operator|
 |```>>```|Right shift operator|
 
 The result of the computation of bitwise logical operators :
 
-|a   |b   |```a&b```|```a|b```|```a^b```|
-|----|----|---------|---------|---------|
-|0   |0   |0        |0        |0        |
-|0   |1   |0        |1        |1        |
-|1   |0   |0        |1        |1        |
-|1   |1   |1        |1        |0        |
+|```a```|```b```|```a AND b```|```a OR b```|```a XOR b```|
+|-------|-------|-------------|------------|-------------|
+|0|0|0|0|0|
+|0|1|0|1|1|
+|1|0|0|1|1|
+|1|1|1|1|0|
+
+## Installation & Tests
+
+```
+$> make
+$> gcc -Iincludes libftprintf.a main.c && ./a.out
+```
 
 ## Useful links 🤙
 
