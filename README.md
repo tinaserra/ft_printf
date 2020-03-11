@@ -61,10 +61,10 @@ The optional width specification field appears after any flags characters.
 ```
 Examples :
 printf("%5d", 42); --> '   42'
+printf("%*d", 5, 42); --> '   42'
 printf("%5d", 123456); --> '123456'
 printf("%05d", 42); --> '00042'
 printf("%-5d", 42); --> '42   '
-printf("%*d", 5, 42); --> '   42'
 ```
 
 ## Precision specification
@@ -72,15 +72,16 @@ printf("%*d", 5, 42); --> '   42'
 The precision depends on the conversion type.
 
 * ```Precision``` consists of a period (.) followed by a non-negative decimal integer.
-* For ```%s``` it specifies the number of string characters.
-* For ```%p``` ```%d``` ```%i``` ```%u``` ```%x``` ```%X``` it specifies the number of digits to be output.
+* For ```%s``` it specifies the number of string characters. The precision can cause either truncation of the string.
+* For ```%p``` ```%d``` ```%i``` ```%u``` ```%x``` ```%X``` it specifies the number of digits to be output. If precision is specified as 0, and the value to be converted is 0, the result is no characters output.
 
 ```
 Examples :
 printf("%.5d", 42); --> '00042'
-printf("%.5d", 123456); --> '123456'
-printf("%.0d", 42); --> ''
 printf("%.*d", 5, 42); --> '00042'
+printf("%.5d", -42); --> '-0042'
+printf("%.5d", 123456); --> '123456'
+printf("%.0d", 0); --> '' /* No characters output */
 ```
 
 ## Useful links
