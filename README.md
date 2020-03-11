@@ -58,7 +58,7 @@ The optional width specification field appears after any flags characters.
 * The width specification never causes a value to be truncated.
 * If the width specification is an asterisk (*), an int argument from the argument list supplies the value. /!\ if ```width value < 0```.
 
-```
+```js
 Examples :
 printf("%5d", 42); --> '   42'
 printf("%*d", 5, 42); --> '   42'
@@ -75,7 +75,7 @@ The precision depends on the conversion type.
 * For ```%s``` it specifies the number of string characters. The precision can cause either truncation of the string.
 * For ```%p``` ```%d``` ```%i``` ```%u``` ```%x``` ```%X``` it specifies the number of digits to be output. If precision is specified as 0, and the value to be converted is 0, the result is no characters output.
 
-```
+```js
 Examples :
 printf("%.5d", 42); --> '00042'
 printf("%.*d", 5, 42); --> '00042'
