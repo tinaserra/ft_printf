@@ -84,7 +84,14 @@ printf("%.5d", 123456); --> '123456'
 printf("%.0d", 0); --> '' /* No characters output */
 ```
 
-## Useful links
+## Installation & Tests
+
+```
+$> make
+$> gcc -Iincludes libftprintf.a main.c && ./a.out
+```
+
+## Useful links 🤙
 
 * About [printf](https://docs.microsoft.com/fr-fr/cpp/c-runtime-library/format-specification-syntax-printf-and-wprintf-functions?view=vs-2019)
 * Or a [man printf](http://www.cplusplus.com/reference/cstdio/printf/)
