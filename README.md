@@ -112,7 +112,7 @@ mask --> 0000 0011
 ```
 
 |Operator|Meanning|
-|--------|--------|
+|--------|-----|
 |```&```|Bitwise AND operator|
 |```|```|Bitwise OR operator|
 |```^```|Bitwise exclusive OR operator|
@@ -122,6 +122,7 @@ mask --> 0000 0011
 
 The result of the computation of bitwise logical operators :
 
+|Variables      |Operators                    |
 |```a```|```b```|```a&b```|```a|b```|```a^b```|
 |-------|-------|---------|---------|---------|
 |0|0|0|0|0|
