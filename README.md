@@ -8,7 +8,7 @@ Subject -> [EN](https://github.com/tina-ak47/ft_printf/blob/master/links/ft_prin
 
 ### Basics, requested from subject:
 
-Conversion specifier : ```%c``` ```%s``` ```%p``` ```%d``` ```%i``` ```%u``` ```%x``` ```%X``` ```%%```
+Conversion specifier : ```%c``` ```%s``` ```%p``` ```%d``` ```%i``` ```%u``` ```%x``` ```%X``` ```%%```.
 Parsing for flags ```0``` & ```-```, width and precision.
 
 ### Format specification syntax
@@ -21,7 +21,7 @@ A conversion specification consists of optional and required fields in this form
 
 The ```size``` is not requested in the subject.
 
-### Type field characters
+### Type field character
 
 |Type character|Argument|Output format|
 |--------------|--------|-------------|
