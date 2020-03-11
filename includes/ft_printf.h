@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 17:46:44 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/10 21:58:09 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/11 14:04:54 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define IS_ZERO		2
 # define IS_WIDTH		4
 # define IS_PRECISION	8
-# define IS_POINT		16
+// # define IS_POINT		16
 
 typedef enum	e_mode{
 	FLAGS,

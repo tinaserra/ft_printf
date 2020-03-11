@@ -91,9 +91,47 @@ $> make
 $> gcc -Iincludes libftprintf.a main.c && ./a.out
 ```
 
+## Bitwise operator
+
+Bitwise operator are usefull to parse the format string. 
+You can check the presence of ```-```, ```0```, ```width``` and ```precision``` very easy in a ```mask```.
+
+```
+define IS_MINUS		1 << 0
+define IS_ZERO		1 << 1
+define IS_WIDTH		1 << 2
+define IS_PRECISION	1 << 3
+```
+The type of the ```mask``` depends of the number of informations you need to stock. For example in a type ```char``` you can have 8.
+
+If ```-``` and ```0``` are present in the format string :
+```
+mask |= IS_MINUS;
+mask |= IS_ZERO;
+mask --> 0000 0011
+```
+
+|Operator|Meanning|
+|--------|--------|
+|```&```|Bitwise AND operator|
+|```|```|Bitwise OR operator|
+|```^```|Bitwise exclusive OR operator|
+|```~```|Binary One's Complement Operator is a unary operator|
+|```<<```|Left shift operator|
+|```>>```|Right shift operator|
+
+The result of the computation of bitwise logical operators :
+
+|```a```|```b```|```a&b```|```a|b```|```a^b```|
+|-------|-------|---------|---------|---------|
+|0|0|0|0|0|
+|0|1|0|1|1|
+|1|0|0|1|1|
+|1|1|1|1|0|
+
 ## Useful links 🤙
 
 * About [printf](https://docs.microsoft.com/fr-fr/cpp/c-runtime-library/format-specification-syntax-printf-and-wprintf-functions?view=vs-2019)
-* Or a [man printf](http://www.cplusplus.com/reference/cstdio/printf/)
+* Another [man printf](http://www.cplusplus.com/reference/cstdio/printf/)
+* Basics about [Bitwise operator](https://www.guru99.com/c-bitwise-operators.html)
 * Try out the [Bitwise commands](http://bitwisecmd.com/)
-
