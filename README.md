@@ -126,7 +126,7 @@ The result of the computation of bitwise logical operators :
 
 ```
 $> make
-$> gcc -Iincludes libftprintf.a main.c && ./a.out
+$> gcc -Iincludes libftprintf.a main/main.c && ./a.out
 ```
 
 ## Useful links 🤙

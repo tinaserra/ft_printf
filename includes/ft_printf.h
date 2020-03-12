@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 17:46:44 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/11 14:04:54 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/11 14:46:36 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 ** # define IS_ZERO			1 << 1 -> 2
 ** # define IS_WIDTH		1 << 2 -> 4
 ** # define IS_PRECISION	1 << 3 -> 8
-** # define IS_POINT		1 << 4 -> 16
 */
 
 #ifndef FT_PRINTF_H
@@ -31,7 +30,6 @@
 # define IS_ZERO		2
 # define IS_WIDTH		4
 # define IS_PRECISION	8
-// # define IS_POINT		16
 
 typedef enum	e_mode{
 	FLAGS,

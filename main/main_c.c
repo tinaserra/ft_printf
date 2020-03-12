@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 18:15:19 by vserra            #+#    #+#             */
-/*   Updated: 2020/03/09 16:59:49 by vserra           ###   ########.fr       */
+/*   Updated: 2020/03/11 20:47:01 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,18 @@
 #include <limits.h>
 #include "ft_printf.h"
 
+/*
+** Flag ZERO and precision -> Undifined behaviour
+*/
+
 int main()
 {
-	int w = 12;
-	int p = 10;
+	int w = 12; // Change width here !
+	int p = 10; // Change precision here !
 	int c = 0;
+
 	int ret_1 = 0;
 	int ret_2 = 0;
-
-
-	// ret_1 = printf("|hello ca%----4c %1c%10c%-c ??|\n", '\0', '\n', (char)56, 0);
-	// ret_2 = ft_printf("|hello ca%----4c %1c%10c%-c ??|\n", '\0', '\n', (char)56, 0);
-	// printf("%d | %d\n\n", ret_1, ret_2);
-
-	// ret_1 = printf("|%----4c|\n", '\0');
-	// ret_2 = ft_printf("|%----4c|\n", '\0');
-	// printf("%d | %d\n\n", ret_1, ret_2);
-
-	// ret_1 = printf("|%1c|\n", '\n');
-	// ret_2 = ft_printf("|%1c|\n", '\n');
-	// printf("%d | %d\n\n", ret_1, ret_2);
-
-	// ret_1 = printf("|%10c|\n", (char)56);
-	// ret_2 = ft_printf("|%10c|\n", (char)56);
-	// printf("%d | %d\n\n", ret_1, ret_2);
-
-	ret_1 = printf("|%-c|\n", 0);
-	ret_2 = ft_printf("|%-c|\n", 0);
-	printf("%d | %d\n\n", ret_1, ret_2);
 
 /* SIMPLE TESTS --------------------------------- */
 
@@ -114,8 +98,32 @@ int main()
 	printf("%d | %d\n\n", ret_1, ret_2);
 
 	printf("\n😎\n");
-	return 0;
-}
 
 // INT_MAX 2147483647
 // UINT_MAX 4294967295
+
+/* OTHER TESTS --------------------------------- */
+
+	// ret_1 = printf("|hello ca%----4c %1c%10c%-c ??|\n", '\0', '\n', (char)56, 0);
+	// ret_2 = ft_printf("|hello ca%----4c %1c%10c%-c ??|\n", '\0', '\n', (char)56, 0);
+	// printf("%d | %d\n\n", ret_1, ret_2);
+
+	// ret_1 = printf("|%----4c|\n", '\0');
+	// ret_2 = ft_printf("|%----4c|\n", '\0');
+	// printf("%d | %d\n\n", ret_1, ret_2);
+
+	// ret_1 = printf("|%1c|\n", '\n');
+	// ret_2 = ft_printf("|%1c|\n", '\n');
+	// printf("%d | %d\n\n", ret_1, ret_2);
+
+	// ret_1 = printf("|%10c|\n", (char)56);
+	// ret_2 = ft_printf("|%10c|\n", (char)56);
+	// printf("%d | %d\n\n", ret_1, ret_2);
+
+	// ret_1 = printf("|%-c|\n", 0);
+	// ret_2 = ft_printf("|%-c|\n", 0);
+	// printf("%d | %d\n\n", ret_1, ret_2);
+
+	printf("\n🐒\n");
+	return 0;
+}
